@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Tests | Edunex Admin</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/admin.css">
+</head>
+
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <!-- Sidebar identical to others -->
+            <div class="sidebar-brand"><img src="../assets/images/logo.png" alt="Logo">
+                <div>
+                    <div class="brand">Edunex Academy</div><span class="brand-sub">Admin Panel</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Main</div>
+                <a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="students.html" class="nav-item"><i class="fas fa-user-graduate"></i> Students</a>
+                <a href="courses.html" class="nav-item"><i class="fas fa-book"></i> Courses</a>
+                <div class="nav-section-title" style="margin-top:12px;">Academic</div>
+                <a href="tests.html" class="nav-item active"><i class="fas fa-clipboard-check"></i> Online Tests</a>
+                <a href="fees.html" class="nav-item"><i class="fas fa-rupee-sign"></i> Fee Management</a>
+                <div class="nav-section-title" style="margin-top:12px;">Leads</div>
+                <a href="enquiries.html" class="nav-item"><i class="fas fa-envelope-open-text"></i> Enquiries</a>
+                <div class="nav-section-title" style="margin-top:12px;">Settings</div>
+                <a href="../index.html" target="_blank" class="nav-item"><i class="fas fa-globe"></i> View Website</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="avatar" id="sidebarUserInitial">A</div>
+                    <div class="info">
+                        <div class="name" id="sidebarUserName">Admin</div>
+                        <div class="role">Administrator</div>
+                    </div>
+                    <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="top-header">
+                <div>
+                    <div class="page-title">Online Tests</div>
+                    <div class="page-subtitle">Manage tests and view results</div>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" onclick="showToast('Test Builder coming in v2','info')">
+                        <i class="fas fa-plus"></i> Create Test
+                    </button>
+                </div>
+            </header>
+
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Test Library</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Test Title</th>
+                                    <th>Subject</th>
+                                    <th>Total Marks</th>
+                                    <th>Duration</th>
+                                    <th>Attempts</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="testsTbody">
+                                <tr>
+                                    <td colspan="7" style="text-align:center;padding:32px;">
+                                        <div class="spinner"></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="modal-overlay" id="resultsModal">
+        <div class="modal" style="max-width:800px;">
+            <div class="modal-header">
+                <span class="modal-title"><i class="fas fa-trophy" style="color:var(--gold);margin-right:8px;"></i> Test
+                    Results</span>
+                <button class="modal-close" onclick="closeModal('resultsModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Student</th>
+                            <th>Score</th>
+                            <th>Grade</th>
+                            <th>Time Taken</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="assets/admin.js"></script>
+    <script>
+        requireAdmin();
+        renderSidebarUser();
+
+        async function loadTests() {
+            try {
+                const data = await apiCall('/tests/admin/all');
+                const tbody = document.getElementById('testsTbody');
+
+                if (!data.data.length) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><p>No tests created yet.</p></td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.data.map(t => `
+                <tr>
+                    <td><div style="font-weight:600;">${t.title}</div><div style="font-size:0.75rem;color:var(--text-muted);">${t.course?.title || 'General'}</div></td>
+                    <td>${t.subject || '—'}</td>
+                    <td>${t.totalMarks}</td>
+                    <td>${t.duration} mins</td>
+                    <td>${t.totalAttempts}</td>
+                    <td>${statusBadge(t.isActive ? 'active' : 'inactive')}</td>
+                    <td>
+                        <button class="btn btn-outline btn-sm" onclick="viewResults('${t._id}')"><i class="fas fa-chart-bar"></i> Results</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            } catch (err) { showToast(err.message, 'error'); }
+        }
+
+        async function viewResults(id) {
+            try {
+                openModal('resultsModal');
+                document.getElementById('resultsTbody').innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;"><div class="spinner"></div></td></tr>';
+                const data = await apiCall(`/tests/${id}/results`);
+
+                if (!data.data.length) {
+                    document.getElementById('resultsTbody').innerHTML = '<tr><td colspan="6" class="empty-state"><p>No attempts yet.</p></td></tr>';
+                    return;
+                }
+
+                document.getElementById('resultsTbody').innerHTML = data.data.map((r, i) => `
+                <tr>
+                    <td><span style="background:rgba(255,255,255,0.1);padding:4px 10px;border-radius:6px;font-family:var(--font-head);">${i + 1}</span></td>
+                    <td><div style="font-weight:600;">${r.student?.name}</div><div style="font-size:0.75rem;color:var(--text-muted);">${r.student?.rollNumber}</div></td>
+                    <td><div style="font-weight:700;color:${r.isPassed ? 'var(--success)' : 'var(--danger)'};">${r.marksObtained} / ${r.totalMarks}</div><div style="font-size:0.75rem;">${r.percentage}%</div></td>
+                    <td><span class="badge ${r.isPassed ? 'badge-success' : 'badge-danger'}">${r.grade}</span></td>
+                    <td>${r.timeTaken} mins</td>
+                    <td>${formatDate(r.submittedAt)}</td>
+                </tr>
+            `).join('');
+
+            } catch (err) { showToast(err.message, 'error'); }
+        }
+
+        loadTests();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore all courses at Edunex Academy — Academic classes (5th–12th), PCM, PCB, Computer Science, Python, Web Development, and more.">
+    <title>Courses | Edunex Academy</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/images/logo.png" alt="Edunex Academy Logo" class="nav-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Edunex</span>
+                    <span class="brand-sub">Academy</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li class="dropdown">
+                    <a href="courses.html" class="nav-link dropdown-toggle active">Courses <i
+                            class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#academic" class="dropdown-item"><i class="fas fa-book"></i> Academic (5th–10th)</a>
+                        <a href="#senior" class="dropdown-item"><i class="fas fa-flask"></i> 11th–12th (PCM/PCB)</a>
+                        <a href="#computer" class="dropdown-item"><i class="fas fa-laptop-code"></i> Computer
+                            Courses</a>
+                    </div>
+                </li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="login.html" class="nav-link btn-login">Student Login</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <div class="page-hero-badge"><i class="fas fa-book-open"></i> All Courses</div>
+            <h1>Our <span class="gradient-text">Academic & Professional</span> Programs</h1>
+            <p>A complete curriculum from school-level coaching to industry-ready computer science courses — all under
+                one roof.</p>
+            <nav class="breadcrumb">
+                <a href="../index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Courses</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- MAIN COURSES CONTENT -->
+    <section class="section">
+        <div class="container">
+
+            <!-- Filter Tabs -->
+            <div class="courses-filter">
+                <button class="filter-btn active" data-filter="all" id="filter-all">All Courses</button>
+                <button class="filter-btn" data-filter="academic" id="filter-academic"><i class="fas fa-book"></i>
+                    Academic</button>
+                <button class="filter-btn" data-filter="senior" id="filter-senior"><i class="fas fa-flask"></i> Senior
+                    Secondary</button>
+                <button class="filter-btn" data-filter="computer" id="filter-computer"><i
+                        class="fas fa-laptop-code"></i> Computer Science</button>
+            </div>
+
+            <!-- ===== ACADEMIC: CLASS 5–10 ===== -->
+            <div id="academic" class="course-section" data-category="academic">
+                <div class="course-section-header">
+                    <div class="course-section-icon" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div>
+                        <h2>Academic Courses — Class 5th to 10th</h2>
+                        <p style="font-size:0.85rem;color:var(--dark-gray);margin-top:2px;">All Subjects | CBSE / State
+                            Board</p>
+                    </div>
+                    <span>5 Courses</span>
+                </div>
+
+                <div class="courses-grid">
+
+                    <!-- Mathematics -->
+                    <div class="course-card fade-up" data-category="academic">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+                                <i class="fas fa-square-root-variable"></i>
+                            </div>
+                            <div>
+                                <h3>Mathematics</h3>
+                                <span class="course-level level-all">Class 5–10</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Number System & Algebra</li>
+                                <li><i class="fas fa-check-circle"></i> Geometry & Mensuration</li>
+                                <li><i class="fas fa-check-circle"></i> Statistics & Probability</li>
+                                <li><i class="fas fa-check-circle"></i> Trigonometry (Class 9–10)</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> Year-round</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Science -->
+                    <div class="course-card fade-up delay-1" data-category="academic">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <div>
+                                <h3>Science</h3>
+                                <span class="course-level level-all">Class 6–10</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Physics Fundamentals</li>
+                                <li><i class="fas fa-check-circle"></i> Chemistry & Elements</li>
+                                <li><i class="fas fa-check-circle"></i> Biology & Life Sciences</li>
+                                <li><i class="fas fa-check-circle"></i> Lab-based Practicals</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> Year-round</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- English -->
+                    <div class="course-card fade-up delay-2" data-category="academic">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+                                <i class="fas fa-language"></i>
+                            </div>
+                            <div>
+                                <h3>English</h3>
+                                <span class="course-level level-all">Class 5–10</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Grammar & Writing Skills</li>
+                                <li><i class="fas fa-check-circle"></i> Reading Comprehension</li>
+                                <li><i class="fas fa-check-circle"></i> Literature & Poetry</li>
+                                <li><i class="fas fa-check-circle"></i> Communication Skills</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> Year-round</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Studies -->
+                    <div class="course-card fade-up delay-3" data-category="academic">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#f7971e,#ffd200)">
+                                <i class="fas fa-globe-asia"></i>
+                            </div>
+                            <div>
+                                <h3>Social Studies</h3>
+                                <span class="course-level level-all">Class 6–10</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> History & Civics</li>
+                                <li><i class="fas fa-check-circle"></i> Geography</li>
+                                <li><i class="fas fa-check-circle"></i> Economics Basics</li>
+                                <li><i class="fas fa-check-circle"></i> Political Science</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> Year-round</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hindi -->
+                    <div class="course-card fade-up delay-4" data-category="academic">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#ff6a00,#ee0979)">
+                                <i class="fas fa-om"></i>
+                            </div>
+                            <div>
+                                <h3>Hindi</h3>
+                                <span class="course-level level-all">Class 5–10</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Vyakaran (Grammar)</li>
+                                <li><i class="fas fa-check-circle"></i> Sahitya (Literature)</li>
+                                <li><i class="fas fa-check-circle"></i> Nibandh & Patra Lekhan</li>
+                                <li><i class="fas fa-check-circle"></i> Board Exam Preparation</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> Year-round</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SENIOR SECONDARY: CLASS 11–12 ===== -->
+            <div id="senior" class="course-section" data-category="senior">
+                <div class="course-section-header">
+                    <div class="course-section-icon" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div>
+                        <h2>Senior Secondary — Class 11th & 12th</h2>
+                        <p style="font-size:0.85rem;color:var(--dark-gray);margin-top:2px;">PCM | PCB | CBSE / State
+                            Board</p>
+                    </div>
+                    <span>2 Streams</span>
+                </div>
+
+                <div class="courses-grid">
+
+                    <!-- PCM -->
+                    <div class="course-card fade-up" data-category="senior">
+                        <div class="course-card-header"
+                            style="background:linear-gradient(135deg,rgba(26,60,143,0.05),rgba(40,86,200,0.06));">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#1a3c8f,#2856c8)">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div>
+                                <h3>PCM Stream</h3>
+                                <span class="course-level level-intermediate">Class 11–12</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <p style="font-size:0.85rem;color:var(--dark-gray);margin-top:14px;margin-bottom:10px;">
+                                Physics, Chemistry & Mathematics — for engineering entrance aspirants (JEE, BITSAT).</p>
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Physics — Mechanics, EM, Optics</li>
+                                <li><i class="fas fa-check-circle"></i> Chemistry — Organic & Inorganic</li>
+                                <li><i class="fas fa-check-circle"></i> Mathematics — Calculus, Algebra</li>
+                                <li><i class="fas fa-check-circle"></i> JEE/Board Exam Practice Tests</li>
+                                <li><i class="fas fa-check-circle"></i> Weekly Mock Tests + Analysis</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> Year-round</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PCB -->
+                    <div class="course-card fade-up delay-2" data-category="senior">
+                        <div class="course-card-header"
+                            style="background:linear-gradient(135deg,rgba(17,153,142,0.05),rgba(56,239,125,0.06));">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <div>
+                                <h3>PCB Stream</h3>
+                                <span class="course-level level-intermediate">Class 11–12</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <p style="font-size:0.85rem;color:var(--dark-gray);margin-top:14px;margin-bottom:10px;">
+                                Physics, Chemistry & Biology — for medical entrance aspirants (NEET, AIIMS).</p>
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Physics — Core Concepts</li>
+                                <li><i class="fas fa-check-circle"></i> Chemistry — Physical & Organic</li>
+                                <li><i class="fas fa-check-circle"></i> Biology — Botany & Zoology</li>
+                                <li><i class="fas fa-check-circle"></i> NEET Special Practice Papers</li>
+                                <li><i class="fas fa-check-circle"></i> Diagram & Lab Work Focus</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> Year-round</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== COMPUTER SCIENCE COURSES ===== -->
+            <div id="computer" class="course-section" data-category="computer">
+                <div class="course-section-header">
+                    <div class="course-section-icon" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div>
+                        <h2>Computer Science & IT Courses</h2>
+                        <p style="font-size:0.85rem;color:var(--dark-gray);margin-top:2px;">Beginner to Advanced |
+                            Certificate Courses</p>
+                    </div>
+                    <span>8 Courses</span>
+                </div>
+
+                <div class="courses-grid">
+
+                    <!-- Basic Computer -->
+                    <div class="course-card fade-up" data-category="computer">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div>
+                                <h3>Basic Computer & MS Office</h3>
+                                <span class="course-level level-beginner">Beginner</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Computer Fundamentals</li>
+                                <li><i class="fas fa-check-circle"></i> MS Word, Excel, PowerPoint</li>
+                                <li><i class="fas fa-check-circle"></i> Internet & Email Basics</li>
+                                <li><i class="fas fa-check-circle"></i> Certificate on Completion</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> 3 Months</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C & C++ -->
+                    <div class="course-card fade-up delay-1" data-category="computer">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <h3>C & C++ Programming</h3>
+                                <span class="course-level level-beginner">Beginner</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> C Programming Fundamentals</li>
+                                <li><i class="fas fa-check-circle"></i> OOP Concepts in C++</li>
+                                <li><i class="fas fa-check-circle"></i> Data Structures Basics</li>
+                                <li><i class="fas fa-check-circle"></i> Problem Solving & DSA</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> 4 Months</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Python -->
+                    <div class="course-card fade-up delay-2" data-category="computer">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#f7971e,#ffd200)">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div>
+                                <h3>Python Programming</h3>
+                                <span class="course-level level-intermediate">Intermediate</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Python Fundamentals</li>
+                                <li><i class="fas fa-check-circle"></i> OOP & File Handling</li>
+                                <li><i class="fas fa-check-circle"></i> Libraries: NumPy, Pandas</li>
+                                <li><i class="fas fa-check-circle"></i> Mini Projects & Portfolio</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> 4 Months</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Java -->
+                    <div class="course-card fade-up delay-3" data-category="computer">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#ff6a00,#ee0979)">
+                                <i class="fab fa-java"></i>
+                            </div>
+                            <div>
+                                <h3>Java Programming</h3>
+                                <span class="course-level level-intermediate">Intermediate</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Core Java Concepts</li>
+                                <li><i class="fas fa-check-circle"></i> Advanced OOP</li>
+                                <li><i class="fas fa-check-circle"></i> Exception Handling</li>
+                                <li><i class="fas fa-check-circle"></i> JDBC & Database Connect</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> 5 Months</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div class="course-card fade-up" data-category="computer">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <h3>Web Development</h3>
+                                <span class="course-level level-intermediate">Intermediate</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> HTML5 & CSS3</li>
+                                <li><i class="fas fa-check-circle"></i> JavaScript (ES6+)</li>
+                                <li><i class="fas fa-check-circle"></i> React.js Fundamentals</li>
+                                <li><i class="fas fa-check-circle"></i> Project: Build a Website</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> 6 Months</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Analytics -->
+                    <div class="course-card fade-up delay-1" data-category="computer">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <h3>Data Analytics</h3>
+                                <span class="course-level level-intermediate">Intermediate</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Excel for Analytics</li>
+                                <li><i class="fas fa-check-circle"></i> Python: Pandas, Matplotlib</li>
+                                <li><i class="fas fa-check-circle"></i> SQL Basics</li>
+                                <li><i class="fas fa-check-circle"></i> Data Visualization</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> 4 Months</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tally & Accounting -->
+                    <div class="course-card fade-up delay-2" data-category="computer">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#5ee7df,#b490ca)">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            <div>
+                                <h3>Tally & Accounting</h3>
+                                <span class="course-level level-beginner">Beginner</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <ul class="course-topics">
+                                <li><i class="fas fa-check-circle"></i> Accounting Fundamentals</li>
+                                <li><i class="fas fa-check-circle"></i> Tally Prime (Latest)</li>
+                                <li><i class="fas fa-check-circle"></i> GST & Taxation Basics</li>
+                                <li><i class="fas fa-check-circle"></i> Payroll & Reporting</li>
+                            </ul>
+                            <div class="course-meta">
+                                <span class="course-duration"><i class="fas fa-clock"></i> 3 Months</span>
+                                <a href="admissions.html" class="btn btn-sm btn-primary">Enroll</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced IT (Coming Soon) -->
+                    <div class="course-card fade-up delay-3" data-category="computer" style="opacity:0.8;">
+                        <div class="course-card-header">
+                            <div class="course-icon" style="background:linear-gradient(135deg,#2c3e50,#4ca1af)">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div>
+                                <h3>AI & Machine Learning</h3>
+                                <span class="course-level level-advanced">Advanced</span>
+                            </div>
+                        </div>
+                        <div class="course-card-body">
+                            <div style="text-align:center;padding:10px 0;">
+                                <div class="coming-soon-badge" style="margin:0 auto 12px;"><i class="fas fa-clock"></i>
+                                    Coming Soon</div>
+                                <p style="font-size:0.85rem;color:var(--dark-gray);">Advanced AI & ML course launching
+                                    soon. Register your interest to get early access!</p>
+                            </div>
+                            <div class="course-meta" style="margin-top:16px;">
+                                <span class="course-duration"><i class="fas fa-clock"></i> 6 Months</span>
+                                <a href="contact.html" class="btn btn-sm btn-secondary">Notify Me</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /computer -->
+
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Not Sure Which Course Is Right for You?</h2>
+                <p>Talk to our counselors — free of charge. We'll help you choose the best path.</p>
+            </div>
+            <div class="cta-actions">
+                <a href="contact.html" class="btn btn-white"><i class="fas fa-phone"></i> Call Us Now</a>
+                <a href="admissions.html" class="btn btn-outline-white">Enroll Today <i
+                        class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col footer-brand">
+                        <div class="footer-logo-wrap">
+                            <img src="../assets/images/logo.png" alt="Edunex Academy" class="footer-logo">
+                            <div class="brand-text"><span class="brand-name">Edunex</span><span
+                                    class="brand-sub">Academy</span></div>
+                        </div>
+                        <p class="footer-tagline">Empowering minds, building futures since 2015.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                            <li><a href="courses.html"><i class="fas fa-chevron-right"></i> All Courses</a></li>
+                            <li><a href="admissions.html"><i class="fas fa-chevron-right"></i> Admissions</a></li>
+                            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Course Categories</h4>
+                        <ul class="footer-links">
+                            <li><a href="#academic"><i class="fas fa-chevron-right"></i> Class 5th–10th</a></li>
+                            <li><a href="#senior"><i class="fas fa-chevron-right"></i> 11th–12th PCM</a></li>
+                            <li><a href="#senior"><i class="fas fa-chevron-right"></i> 11th–12th PCB</a></li>
+                            <li><a href="#computer"><i class="fas fa-chevron-right"></i> Computer Courses</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Contact Us</h4>
+                        <ul class="footer-contact">
+                            <li><i class="fas fa-map-marker-alt"></i><span>123 Education Street, Sector 4, New Delhi –
+                                    110001</span></li>
+                            <li><i class="fas fa-phone"></i><span><a href="tel:+919876543210">+91 98765 43210</a></span>
+                            </li>
+                            <li><i class="fas fa-envelope"></i><span><a
+                                        href="mailto:info@edunexacademy.com">info@edunexacademy.com</a></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 Edunex Academy. All Rights Reserved.</p>
+                <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Course filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+                document.querySelectorAll('.course-section').forEach(section => {
+                    if (filter === 'all' || section.getAttribute('data-category') === filter) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+
+                // Scroll to first visible section
+                if (filter !== 'all') {
+                    const target = document.querySelector(`.course-section[data-category="${filter}"]`);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

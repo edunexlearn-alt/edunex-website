@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Edunex Academy - Premium Educational Institute in India offering classes 5th-12th, PCM, PCB, and Computer Science courses. Enroll today for a brighter future.">
+    <meta name="keywords" content="Edunex Academy, coaching institute, school classes, computer courses, PCM, PCB, India education">
+    <meta name="author" content="Edunex Academy">
+    <title>Edunex Academy | Excellence in Education</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="assets/images/logo.png" alt="Edunex Academy Logo" class="nav-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Edunex</span>
+                    <span class="brand-sub">Academy</span>
+                </div>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="pages/about.html" class="nav-link">About</a></li>
+                <li class="dropdown">
+                    <a href="pages/courses.html" class="nav-link dropdown-toggle">Courses <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="pages/courses.html#academic" class="dropdown-item"><i class="fas fa-book"></i> Academic (5th–10th)</a>
+                        <a href="pages/courses.html#senior" class="dropdown-item"><i class="fas fa-flask"></i> 11th–12th (PCM/PCB)</a>
+                        <a href="pages/courses.html#computer" class="dropdown-item"><i class="fas fa-laptop-code"></i> Computer Courses</a>
+                    </div>
+                </li>
+                <li><a href="pages/admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
+                <li><a href="pages/login.html" class="nav-link btn-login">Student Login</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="home">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>India's Trusted Learning Institute</span>
+                </div>
+                <h1 class="hero-title">
+                    Empowering Futures Through
+                    <span class="gradient-text">Quality Education</span>
+                </h1>
+                <p class="hero-subtitle">
+                    From Class 5 to Class 12, Computer Science to Professional IT Skills — Edunex Academy is your partner in academic excellence and career readiness.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="500">0</span><span class="stat-plus">+</span>
+                        <span class="stat-label">Students Enrolled</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="20">0</span><span class="stat-plus">+</span>
+                        <span class="stat-label">Courses Offered</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="95">0</span><span class="stat-plus">%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                </div>
+                <div class="hero-cta">
+                    <a href="pages/admissions.html" class="btn btn-primary" id="hero-enroll-btn">
+                        <i class="fas fa-graduation-cap"></i> Enroll Now
+                    </a>
+                    <a href="pages/contact.html" class="btn btn-outline" id="hero-contact-btn">
+                        <i class="fas fa-phone"></i> Contact Us
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-wrapper">
+                    <img src="assets/images/hero-banner.png" alt="Students learning at Edunex Academy" class="hero-img">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-trophy"></i>
+                        <div>
+                            <strong>Top Results</strong>
+                            <span>Board Exams 2024</span>
+                        </div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>500+ Students</strong>
+                            <span>Trusted by Families</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z" fill="#f8faff"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ========== ANNOUNCEMENT TICKER ========== -->
+    <div class="ticker-bar">
+        <div class="ticker-label"><i class="fas fa-bullhorn"></i> Latest</div>
+        <div class="ticker-wrapper">
+            <div class="ticker-content">
+                <span>🎓 Admissions Open for 2024–25 Session &nbsp;|&nbsp;</span>
+                <span>📚 New Batch Starting: Class 11 PCM &amp; PCB — 1st March 2024 &nbsp;|&nbsp;</span>
+                <span>💻 Python &amp; Web Development Course — Limited Seats! &nbsp;|&nbsp;</span>
+                <span>🏆 Our Students Achieved 95%+ in Board Exams! &nbsp;|&nbsp;</span>
+                <span>📞 Call Now to Register: +91 98765 43210 &nbsp;|&nbsp;</span>
+                <span>🎓 Admissions Open for 2024–25 Session &nbsp;|&nbsp;</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== COURSE CATEGORIES ========== -->
+    <section class="section course-categories" id="courses">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">What We Offer</span>
+                <h2 class="section-title">Our Course Programs</h2>
+                <p class="section-subtitle">Comprehensive academic and professional courses designed for every stage of your educational journey.</p>
+            </div>
+
+            <div class="category-grid">
+                <!-- Category 1: Academic (5-10) -->
+                <div class="category-card" id="cat-academic">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Academic Classes</h3>
+                    <p class="category-meta">Class 5th – 10th</p>
+                    <p>Complete subject coverage including Maths, Science, English, SST, and Hindi. Foundation-building education by expert faculty.</p>
+                    <ul class="category-subjects">
+                        <li><i class="fas fa-check"></i> Mathematics</li>
+                        <li><i class="fas fa-check"></i> Science</li>
+                        <li><i class="fas fa-check"></i> English & Hindi</li>
+                        <li><i class="fas fa-check"></i> Social Studies</li>
+                    </ul>
+                    <a href="pages/courses.html#academic" class="btn btn-sm btn-primary">View Courses</a>
+                </div>
+
+                <!-- Category 2: Senior Secondary -->
+                <div class="category-card featured" id="cat-senior">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="category-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Senior Secondary</h3>
+                    <p class="category-meta">Class 11th – 12th</p>
+                    <p>Specialized streams for PCM and PCB students with rigorous preparation for board exams and competitive entrance tests.</p>
+                    <ul class="category-subjects">
+                        <li><i class="fas fa-check"></i> Physics & Chemistry</li>
+                        <li><i class="fas fa-check"></i> Mathematics (PCM)</li>
+                        <li><i class="fas fa-check"></i> Biology (PCB)</li>
+                        <li><i class="fas fa-check"></i> Board Exam Prep</li>
+                    </ul>
+                    <a href="pages/courses.html#senior" class="btn btn-sm btn-primary">View Courses</a>
+                </div>
+
+                <!-- Category 3: Computer Science -->
+                <div class="category-card" id="cat-computer">
+                    <div class="category-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Computer Science</h3>
+                    <p class="category-meta">Beginner to Advanced</p>
+                    <p>Industry-relevant IT and programming courses from basic computer skills to full-stack web development and data analytics.</p>
+                    <ul class="category-subjects">
+                        <li><i class="fas fa-check"></i> Python & Java</li>
+                        <li><i class="fas fa-check"></i> Web Development</li>
+                        <li><i class="fas fa-check"></i> Data Analytics</li>
+                        <li><i class="fas fa-check"></i> MS Office & Tally</li>
+                    </ul>
+                    <a href="pages/courses.html#computer" class="btn btn-sm btn-primary">View Courses</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHY CHOOSE US ========== -->
+    <section class="section why-us" id="why-us">
+        <div class="why-us-bg"></div>
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-badge light">Our Advantage</span>
+                <h2 class="section-title light">Why Choose Edunex Academy?</h2>
+                <p class="section-subtitle light">We are committed to delivering the highest quality education with personalized attention.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h4>Expert Faculty</h4>
+                    <p>Highly qualified and experienced teachers dedicated to nurturing every student's potential.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-users-class"></i></div>
+                    <h4>Small Batch Sizes</h4>
+                    <p>Limited seats per batch ensure personalized attention and focused learning for every student.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>Proven Results</h4>
+                    <p>Consistent 95%+ results in board exams and strong placements in competitive courses.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-laptop"></i></div>
+                    <h4>Modern Infrastructure</h4>
+                    <p>State-of-the-art computer labs, smart classrooms, and learning resources at your fingertips.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+                    <h4>Regular Tests & Reports</h4>
+                    <p>Frequent assessments, detailed progress reports, and one-on-one feedback sessions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                    <h4>Certified Courses</h4>
+                    <p>Industry-recognized certificates for computer and IT courses to boost your career prospects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ADMISSION PROCESS ========== -->
+    <section class="section admission-process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Easy Steps</span>
+                <h2 class="section-title">How to Enroll?</h2>
+                <p class="section-subtitle">Join Edunex Academy in just 3 simple steps.</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">01</div>
+                    <div class="step-icon"><i class="fas fa-phone-alt"></i></div>
+                    <h4>Enquire</h4>
+                    <p>Call us or fill out the online enquiry form. Our counselors will guide you through the right course.</p>
+                </div>
+                <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="step-item">
+                    <div class="step-number">02</div>
+                    <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+                    <h4>Visit & Assess</h4>
+                    <p>Visit the campus for a free demo class. We'll assess the student's current level for the best placement.</p>
+                </div>
+                <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="step-item">
+                    <div class="step-number">03</div>
+                    <div class="step-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h4>Enroll & Learn</h4>
+                    <p>Complete simple registration formalities, pay fees, and start your learning journey with Edunex!</p>
+                </div>
+            </div>
+
+            <div class="admission-cta">
+                <a href="pages/admissions.html" class="btn btn-primary btn-lg" id="admission-cta-btn">
+                    <i class="fas fa-paper-plane"></i> Apply for Admission
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Student Stories</span>
+                <h2 class="section-title">What Our Students Say</h2>
+                <p class="section-subtitle">Real experiences from students and parents who trust Edunex Academy.</p>
+            </div>
+
+            <div class="testimonials-slider" id="testimonialsSlider">
+                <div class="testimonial-card active">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Edunex Academy completely transformed my understanding of Mathematics and Science. My board exam score improved from 72% to 91% in just one year!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div>
+                            <strong>Arjun Kumar</strong>
+                            <span>Class 10th Student, 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The Python and Web Development course at Edunex is world-class. The practical approach helped me land an internship even before finishing the course!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PS</div>
+                        <div>
+                            <strong>Priya Sharma</strong>
+                            <span>Web Development Course, 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"As a parent, I was skeptical, but the results speak for themselves. My daughter scored 94% in PCB! The teachers are extraordinarily dedicated."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RM</div>
+                        <div>
+                            <strong>Rajesh Mehta</strong>
+                            <span>Parent of Class 12 (PCB) Student</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I joined the Java programming batch and the instructor's teaching style made complex concepts so simple. Got placed in an IT company within 3 months!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">VT</div>
+                        <div>
+                            <strong>Vikram Tiwari</strong>
+                            <span>Java Programming Course, 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-controls">
+                <button class="testimonial-btn" id="prevTestimonial" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                <div class="testimonial-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
+                </div>
+                <button class="testimonial-btn" id="nextTestimonial" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== QUICK CONTACT BANNER ========== -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Learning Journey?</h2>
+                <p>Contact us today and take the first step towards academic excellence.</p>
+            </div>
+            <div class="cta-actions">
+                <a href="tel:+919876543210" class="btn btn-white" id="cta-call-btn">
+                    <i class="fas fa-phone"></i> +91 98765 43210
+                </a>
+                <a href="pages/admissions.html" class="btn btn-outline-white" id="cta-enquiry-btn">
+                    Send Enquiry <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-col footer-brand">
+                        <div class="footer-logo-wrap">
+                            <img src="assets/images/logo.png" alt="Edunex Academy" class="footer-logo">
+                            <div class="brand-text">
+                                <span class="brand-name">Edunex</span>
+                                <span class="brand-sub">Academy</span>
+                            </div>
+                        </div>
+                        <p class="footer-tagline">Empowering minds, building futures. Your trusted partner in academic excellence since 2015.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" id="fb-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" id="ig-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" id="yt-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-link" id="wa-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="pages/about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                            <li><a href="pages/courses.html"><i class="fas fa-chevron-right"></i> All Courses</a></li>
+                            <li><a href="pages/admissions.html"><i class="fas fa-chevron-right"></i> Admissions</a></li>
+                            <li><a href="pages/contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                            <li><a href="pages/login.html"><i class="fas fa-chevron-right"></i> Student Login</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Courses -->
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Our Courses</h4>
+                        <ul class="footer-links">
+                            <li><a href="pages/courses.html#academic"><i class="fas fa-chevron-right"></i> Class 5th – 10th</a></li>
+                            <li><a href="pages/courses.html#senior"><i class="fas fa-chevron-right"></i> Class 11th – 12th (PCM)</a></li>
+                            <li><a href="pages/courses.html#senior"><i class="fas fa-chevron-right"></i> Class 11th – 12th (PCB)</a></li>
+                            <li><a href="pages/courses.html#computer"><i class="fas fa-chevron-right"></i> Python Programming</a></li>
+                            <li><a href="pages/courses.html#computer"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+                            <li><a href="pages/courses.html#computer"><i class="fas fa-chevron-right"></i> Data Analytics</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Contact Us</h4>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>123 Education Street, Sector 4, New Delhi – 110001, India</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <span><a href="tel:+919876543210">+91 98765 43210</a></span>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <span><a href="mailto:info@edunexacademy.com">info@edunexacademy.com</a></span>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <span>Mon–Sat: 8:00 AM – 8:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 Edunex Academy. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color:#f5576c;"></i> for Education</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/home.js"></script>
+</body>
+</html>

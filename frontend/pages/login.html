@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Student login portal for Edunex Academy. Access your courses, results, and dashboard.">
+    <title>Student Login | Edunex Academy</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar scrolled" id="navbar" style="background:rgba(10,20,70,0.98)!important;">
+        <div class="container">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/images/logo.png" alt="Edunex Academy Logo" class="nav-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Edunex</span>
+                    <span class="brand-sub">Academy</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="login.html" class="nav-link btn-login active">Student Login</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- LOGIN PAGE -->
+    <div class="login-page">
+
+        <!-- Background shapes -->
+        <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
+            <div
+                style="position:absolute;width:400px;height:400px;background:rgba(0,200,255,0.05);border-radius:50%;top:-100px;right:-100px;">
+            </div>
+            <div
+                style="position:absolute;width:300px;height:300px;background:rgba(245,166,35,0.04);border-radius:50%;bottom:-80px;left:-80px;">
+            </div>
+        </div>
+
+        <div class="login-card fade-up">
+
+            <!-- Logo -->
+            <div class="login-logo">
+                <img src="../assets/images/logo.png" alt="Edunex Academy">
+                <h2>Edunex Academy</h2>
+                <p>Student & Parent Portal</p>
+            </div>
+
+            <!-- Coming Soon Badge -->
+            <div style="text-align:center;">
+                <div class="coming-soon-badge">
+                    <i class="fas fa-rocket"></i> Portal Launching Soon
+                </div>
+            </div>
+
+            <!-- Coming Soon Message -->
+            <div style="
+                text-align:center;
+                background:rgba(255,255,255,0.06);
+                border:1px solid rgba(255,255,255,0.12);
+                border-radius:var(--radius-md);
+                padding:24px 20px;
+                margin-bottom:24px;
+            ">
+                <i class="fas fa-tools"
+                    style="font-size:2.5rem;color:var(--secondary);margin-bottom:12px;display:block;"></i>
+                <h3
+                    style="color:var(--white);font-family:var(--font-heading);font-size:1.1rem;font-weight:700;margin-bottom:8px;">
+                    Student Portal Under Development
+                </h3>
+                <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;line-height:1.7;">
+                    Our student login portal with full access to results, online tests, fee management, and live classes
+                    is currently being developed and will launch soon!
+                </p>
+            </div>
+
+            <!-- Login Tabs (Preview) -->
+            <div class="login-tabs">
+                <div class="login-tab active" id="tabStudent">Student Login</div>
+                <div class="login-tab" id="tabParent">Parent Login</div>
+            </div>
+
+            <!-- Login Form (Placeholder) -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginId">Student ID / Roll Number</label>
+                    <input type="text" id="loginId" class="form-control" placeholder="e.g. EDX2024001"
+                        data-required="true" autocomplete="username">
+                    <span class="form-error" id="loginId-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <div style="position:relative;">
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password"
+                            data-required="true" autocomplete="current-password" style="padding-right:44px;">
+                        <button type="button" id="togglePassword" style="
+                            position:absolute; right:12px; top:50%; transform:translateY(-50%);
+                            color:rgba(255,255,255,0.4); font-size:0.9rem; cursor:pointer;
+                            background:none; border:none;
+                        "><i class="fas fa-eye"></i></button>
+                    </div>
+                    <span class="form-error" id="loginPassword-error"></span>
+                </div>
+
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                    <label
+                        style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.65);font-size:0.82rem;cursor:pointer;">
+                        <input type="checkbox" style="width:auto;"> Remember me
+                    </label>
+                    <a href="#" style="font-size:0.82rem;color:var(--secondary);">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;"
+                    id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login to Portal
+                </button>
+            </form>
+
+            <div style="text-align:center;margin-top:20px;">
+                <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);">
+                    Don't have an account? <a href="admissions.html"
+                        style="color:var(--secondary);font-weight:600;">Apply for Admission</a>
+                </p>
+            </div>
+
+            <div style="text-align:center;margin-top:14px;">
+                <a href="../index.html" style="font-size:0.82rem;color:rgba(255,255,255,0.4);">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FEATURES COMING SOON -->
+    <section class="section" style="background:var(--off-white);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Coming Soon</span>
+                <h2 class="section-title">Features Being Built for You</h2>
+                <p class="section-subtitle">Our dedicated development team is building a world-class student experience.
+                </p>
+            </div>
+            <div class="features-preview-grid">
+                <div class="preview-card fade-up">
+                    <div class="preview-icon" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h4>Student Dashboard</h4>
+                    <p>Personalized dashboard showing attendance, assignments, upcoming tests, and performance
+                        analytics.</p>
+                    <span class="preview-badge">In Development</span>
+                </div>
+                <div class="preview-card fade-up delay-1">
+                    <div class="preview-icon" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h4>Online Tests</h4>
+                    <p>Chapter-wise and full-length mock tests with instant results, analysis, and rank prediction.</p>
+                    <span class="preview-badge">In Development</span>
+                </div>
+                <div class="preview-card fade-up delay-2">
+                    <div class="preview-icon" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Progress Reports</h4>
+                    <p>Detailed weekly and monthly progress reports viewable by both students and parents.</p>
+                    <span class="preview-badge">In Development</span>
+                </div>
+                <div class="preview-card fade-up delay-3">
+                    <div class="preview-icon" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h4>Fee Management</h4>
+                    <p>Online fee payment, receipts, due date reminders, and payment history — all in one place.</p>
+                    <span class="preview-badge">Planned</span>
+                </div>
+                <div class="preview-card fade-up delay-4">
+                    <div class="preview-icon" style="background:linear-gradient(135deg,#f7971e,#ffd200)">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h4>Recorded Lectures</h4>
+                    <p>Access recorded class sessions, study materials, and downloadable resources anytime.</p>
+                    <span class="preview-badge">Planned</span>
+                </div>
+                <div class="preview-card fade-up delay-5">
+                    <div class="preview-icon" style="background:linear-gradient(135deg,#a8edea,#fed6e3)">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h4>Notifications</h4>
+                    <p>Real-time notifications for batch schedules, holiday announcements, results, and more.</p>
+                    <span class="preview-badge">Planned</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col footer-brand">
+                        <div class="footer-logo-wrap">
+                            <img src="../assets/images/logo.png" alt="Edunex Academy" class="footer-logo">
+                            <div class="brand-text"><span class="brand-name">Edunex</span><span
+                                    class="brand-sub">Academy</span></div>
+                        </div>
+                        <p class="footer-tagline">Empowering minds, building futures since 2015.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                            <li><a href="courses.html"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                            <li><a href="admissions.html"><i class="fas fa-chevron-right"></i> Admissions</a></li>
+                            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Our Courses</h4>
+                        <ul class="footer-links">
+                            <li><a href="courses.html#academic"><i class="fas fa-chevron-right"></i> Class 5th–10th</a>
+                            </li>
+                            <li><a href="courses.html#senior"><i class="fas fa-chevron-right"></i> PCM / PCB</a></li>
+                            <li><a href="courses.html#computer"><i class="fas fa-chevron-right"></i> Python & Web
+                                    Dev</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Contact</h4>
+                        <ul class="footer-contact">
+                            <li><i class="fas fa-map-marker-alt"></i><span>123 Education Street, Sector 4, New
+                                    Delhi</span></li>
+                            <li><i class="fas fa-phone"></i><span><a href="tel:+919876543210">+91 98765 43210</a></span>
+                            </li>
+                            <li><i class="fas fa-envelope"></i><span><a
+                                        href="mailto:info@edunexacademy.com">info@edunexacademy.com</a></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 Edunex Academy. All Rights Reserved.</p>
+                <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Password toggle
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const pwd = document.getElementById('loginPassword');
+            const icon = this.querySelector('i');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                pwd.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+
+        // Login form API connection
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Validate fields
+            const loginId = document.getElementById('loginId');
+            const loginPassword = document.getElementById('loginPassword');
+            let isValid = true;
+
+            const idError = document.getElementById('loginId-error');
+            const pwError = document.getElementById('loginPassword-error');
+            
+            loginId.classList.remove('error');
+            if (idError) idError.classList.remove('visible');
+            loginPassword.classList.remove('error');
+            if (pwError) pwError.classList.remove('visible');
+
+            if (!loginId.value.trim()) {
+                loginId.classList.add('error');
+                if (idError) { idError.textContent = 'Please enter your ID.'; idError.classList.add('visible'); }
+                isValid = false;
+            }
+            if (!loginPassword.value.trim()) {
+                loginPassword.classList.add('error');
+                if (pwError) { pwError.textContent = 'Please enter your password.'; pwError.classList.add('visible'); }
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const btn = document.getElementById('loginBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+            btn.disabled = true;
+
+            const payload = {
+                identifier: loginId.value.trim(),
+                password: loginPassword.value
+            };
+
+            fetch('http://localhost:5000/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && data.token) {
+                    // Success!
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Success!';
+                    btn.style.background = 'var(--success)';
+                    showToast('Login successful! Welcome back.', 'success');
+                    
+                    // Actually store token
+                    localStorage.setItem('edunex_token', data.token);
+                    if (data.user) {
+                        localStorage.setItem('edunex_user', JSON.stringify(data.user));
+                    }
+
+                    // Redirect mock based on role
+                    setTimeout(() => {
+                        if (data.user && data.user.role === 'admin') {
+                            window.location.href = 'http://localhost:5000/admin-panel';
+                        } else {
+                            // Show coming soon if student (for now)
+                            showToast('Student Dashboard is still coming soon.', 'success');
+                            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Portal';
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }
+                    }, 1500);
+
+                } else {
+                    throw new Error(data.message || 'Invalid credentials');
+                }
+            })
+            .catch(err => {
+                btn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Login Failed';
+                btn.style.background = 'var(--danger, #ef4444)';
+                showToast(err.message, 'error');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Portal';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            });
+        });
+
+        // Tab switching
+        document.getElementById('tabStudent').addEventListener('click', function () {
+            this.classList.add('active');
+            document.getElementById('tabParent').classList.remove('active');
+        });
+        document.getElementById('tabParent').addEventListener('click', function () {
+            this.classList.add('active');
+            document.getElementById('tabStudent').classList.remove('active');
+        });
+    </script>
+
+    <style>
+        .features-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .preview-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 28px 22px;
+            box-shadow: var(--shadow-card);
+            border: 1.5px solid var(--light-gray);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .preview-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--white);
+            margin: 0 auto 16px;
+        }
+
+        .preview-card h4 {
+            font-family: var(--font-heading);
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .preview-card p {
+            font-size: 0.86rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .preview-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            background: rgba(26, 60, 143, 0.07);
+            color: var(--primary);
+            border-radius: var(--radius-full);
+            font-size: 0.72rem;
+            font-weight: 600;
+            border: 1px solid rgba(26, 60, 143, 0.12);
+        }
+
+        @media (max-width: 768px) {
+            .features-preview-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-preview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Edunex Academy</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/admin.css">
+    <style>
+        .admin-login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0f172a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .bg-orb-1 {
+            width: 400px;
+            height: 400px;
+            background: #3b82f6;
+            top: -100px;
+            right: -100px;
+        }
+
+        .bg-orb-2 {
+            width: 300px;
+            height: 300px;
+            background: #8b5cf6;
+            bottom: -80px;
+            left: -80px;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 48px 44px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-box h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .login-box p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.88rem;
+            margin-bottom: 32px;
+        }
+
+        .form-row {
+            margin-bottom: 18px;
+        }
+
+        .form-row label {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-row input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-family: inherit;
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        .form-row input:focus {
+            border-color: #3b82f6;
+        }
+
+        .form-row input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 13px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: opacity 0.2s, transform 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .error-msg {
+            color: #f87171;
+            font-size: 0.82rem;
+            margin-top: 12px;
+            text-align: center;
+            display: none;
+        }
+
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .admin-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        .admin-logo span {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-login-page">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="login-box">
+            <div class="admin-logo">
+                <img src="../assets/images/logo.png" alt="Logo">
+                <span>Edunex Academy</span>
+            </div>
+            <h1>Admin Portal</h1>
+            <p>Sign in to access the management dashboard</p>
+            <div class="form-row">
+                <label>Email or Mobile</label>
+                <input type="text" id="identifier" placeholder="admin@edunexacademy.com" autocomplete="username">
+            </div>
+            <div class="form-row">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+            </div>
+            <button class="btn-login" id="loginBtn" onclick="adminLogin()">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+            <div class="error-msg" id="errorMsg"></div>
+            <p style="text-align:center;margin-top:20px;font-size:0.78rem;color:rgba(255,255,255,0.3);">
+                <a href="../index.html" style="color:rgba(255,255,255,0.4);"><i class="fas fa-arrow-left"></i> Back to
+                    Website</a>
+            </p>
+        </div>
+    </div>
+    <script>
+        const API = 'http://localhost:5000/api';
+
+        // If already logged in, redirect
+        if (localStorage.getItem('adminToken')) {
+            window.location.href = 'dashboard.html';
+        }
+
+        document.getElementById('password').addEventListener('keypress', e => {
+            if (e.key === 'Enter') adminLogin();
+        });
+
+        async function adminLogin() {
+            const identifier = document.getElementById('identifier').value.trim();
+            const password = document.getElementById('password').value;
+            const errEl = document.getElementById('errorMsg');
+            const btn = document.getElementById('loginBtn');
+
+            if (!identifier || !password) {
+                showError('Please enter credentials.');
+                return;
+            }
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+            btn.disabled = true;
+            errEl.style.display = 'none';
+
+            try {
+                const res = await fetch(`${API}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier, password })
+                });
+                const data = await res.json();
+
+                if (data.success && data.user.role === 'admin') {
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+                    window.location.href = 'dashboard.html';
+                } else if (data.success && data.user.role !== 'admin') {
+                    showError('Access denied. Admin credentials required.');
+                } else {
+                    showError(data.message || 'Invalid credentials.');
+                }
+            } catch (err) {
+                showError('Cannot connect to server. Ensure the backend is running on port 5000.');
+            }
+
+            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+            btn.disabled = false;
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('errorMsg');
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
