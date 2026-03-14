@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Management | Edunex Admin</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/admin.css">
+</head>
+
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-brand"><img src="../assets/images/logo.png" alt="Logo">
+                <div>
+                    <div class="brand">Edunex Academy</div><span class="brand-sub">Admin Panel</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Main</div>
+                <a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="students.html" class="nav-item"><i class="fas fa-user-graduate"></i> Students</a>
+                <a href="courses.html" class="nav-item"><i class="fas fa-book"></i> Courses</a>
+                <div class="nav-section-title" style="margin-top:12px;">Academic</div>
+                <a href="tests.html" class="nav-item"><i class="fas fa-clipboard-check"></i> Online Tests</a>
+                <a href="fees.html" class="nav-item active"><i class="fas fa-rupee-sign"></i> Fee Management</a>
+                <div class="nav-section-title" style="margin-top:12px;">Leads</div>
+                <a href="enquiries.html" class="nav-item"><i class="fas fa-envelope-open-text"></i> Enquiries</a>
+                <div class="nav-section-title" style="margin-top:12px;">Settings</div>
+                <a href="../index.html" target="_blank" class="nav-item"><i class="fas fa-globe"></i> View Website</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="avatar" id="sidebarUserInitial">A</div>
+                    <div class="info">
+                        <div class="name" id="sidebarUserName">Admin</div>
+                        <div class="role">Administrator</div>
+                    </div>
+                    <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="top-header">
+                <div>
+                    <div class="page-title">Fee Management</div>
+                    <div class="page-subtitle">Track and manage all student fees</div>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-outline" onclick="openModal('generateFeesModal')"><i
+                            class="fas fa-magic"></i> Generate Monthly</button>
+                    <button class="btn btn-primary" onclick="openModal('addFeeModal')"><i class="fas fa-plus"></i> Add
+                        Fee Record</button>
+                </div>
+            </header>
+
+            <div class="page-body">
+                <!-- Fee Summary Cards -->
+                <div class="stats-grid" id="feeSummary" style="margin-bottom:24px;">
+                    <div class="stat-card">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters-row">
+                    <select class="filter-select" id="statusFilter" onchange="loadFees()">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="paid">Paid</option>
+                        <option value="overdue">Overdue</option>
+                        <option value="partial">Partial</option>
+                    </select>
+                    <input type="month" class="filter-select" id="monthFilter" onchange="loadFees()"
+                        style="cursor:pointer;">
+                </div>
+
+                <!-- Fees Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title"><i class="fas fa-rupee-sign"
+                                style="color:var(--gold);margin-right:8px;"></i> Fee Records</span>
+                        <span style="font-size:0.8rem;color:var(--text-muted);" id="feeTotal"></span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Course</th>
+                                    <th>Type</th>
+                                    <th>Month</th>
+                                    <th>Amount</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Payment Method</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feesTbody">
+                                <tr>
+                                    <td colspan="9" style="text-align:center;padding:32px;">
+                                        <div class="spinner"></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <span id="feePageInfo" style="color:var(--text-muted);font-size:0.82rem;"></span>
+                        <div class="pagination-btns" id="feePaginationBtns"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mark Paid Modal -->
+    <div class="modal-overlay" id="markPaidModal">
+        <div class="modal" style="max-width:420px;">
+            <div class="modal-header">
+                <span class="modal-title"><i class="fas fa-check-circle"
+                        style="color:var(--success);margin-right:8px;"></i> Mark Fee as Paid</span>
+                <button class="modal-close" onclick="closeModal('markPaidModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <input type="hidden" id="markPaidFeeId">
+            <div class="form-group">
+                <label class="form-label">Payment Method *</label>
+                <select class="form-control" id="markPaidMethod">
+                    <option value="cash">Cash</option>
+                    <option value="upi">UPI</option>
+                    <option value="bank-transfer">Bank Transfer</option>
+                    <option value="cheque">Cheque</option>
+                    <option value="razorpay">Razorpay / Online</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Transaction ID (optional)</label>
+                <input type="text" class="form-control" id="markPaidTxn" placeholder="UPI Ref / Cheque No.">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Amount Collected (₹)</label>
+                <input type="number" class="form-control" id="markPaidAmount" placeholder="Leave blank for full amount">
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px;">
+                <button class="btn btn-outline" onclick="closeModal('markPaidModal')">Cancel</button>
+                <button class="btn btn-success" onclick="submitMarkPaid()"><i class="fas fa-check"></i> Confirm
+                    Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generate Monthly Fees Modal -->
+    <div class="modal-overlay" id="generateFeesModal">
+        <div class="modal" style="max-width:420px;">
+            <div class="modal-header">
+                <span class="modal-title"><i class="fas fa-magic" style="color:var(--secondary);margin-right:8px;"></i>
+                    Generate Monthly Fees</span>
+                <button class="modal-close" onclick="closeModal('generateFeesModal')"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:20px;">This will create fee records for
+                all active students and their enrolled courses.</p>
+            <div class="form-group">
+                <label class="form-label">Month *</label>
+                <input type="text" class="form-control" id="genMonth" placeholder="e.g. March 2025">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Due Date *</label>
+                <input type="date" class="form-control" id="genDueDate">
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px;">
+                <button class="btn btn-outline" onclick="closeModal('generateFeesModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="generateMonthlyFees()"><i class="fas fa-magic"></i>
+                    Generate</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="assets/admin.js"></script>
+    <script>
+        requireAdmin();
+        renderSidebarUser();
+        let currentPage = 1;
+
+        async function loadFeeSummary() {
+            try {
+                const data = await apiCall('/admin/fees/summary');
+                const summary = data.data;
+                const get = (status) => summary.find(s => s._id === status) || { count: 0, total: 0 };
+
+                const paid = get('paid');
+                const pending = get('pending');
+                const overdue = get('overdue');
+                const partial = get('partial');
+
+                document.getElementById('feeSummary').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:linear-gradient(135deg,#22c55e,#16a34a)"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-info"><div class="stat-value">${formatCurrency(paid.total)}</div><div class="stat-label">Total Collected</div><div class="stat-change up"><i class="fas fa-file-invoice"></i> ${paid.count} records</div></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fas fa-clock"></i></div>
+                    <div class="stat-info"><div class="stat-value">${formatCurrency(pending.total)}</div><div class="stat-label">Pending</div><div class="stat-change"><i class="fas fa-file-invoice"></i> ${pending.count} records</div></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:linear-gradient(135deg,#ef4444,#b91c1c)"><i class="fas fa-exclamation-circle"></i></div>
+                    <div class="stat-info"><div class="stat-value">${formatCurrency(overdue.total)}</div><div class="stat-label">Overdue</div><div class="stat-change down"><i class="fas fa-file-invoice"></i> ${overdue.count} records</div></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)"><i class="fas fa-adjust"></i></div>
+                    <div class="stat-info"><div class="stat-value">${formatCurrency(partial.total)}</div><div class="stat-label">Partial Payment</div><div class="stat-change"><i class="fas fa-file-invoice"></i> ${partial.count} records</div></div>
+                </div>
+            `;
+            } catch (err) { showToast(err.message, 'error'); }
+        }
+
+        async function loadFees(page = currentPage) {
+            currentPage = page;
+            const status = document.getElementById('statusFilter').value;
+            const month = document.getElementById('monthFilter').value;
+
+            let q = `?page=${page}&limit=15`;
+            if (status) q += `&status=${status}`;
+
+            try {
+                const tbody = document.getElementById('feesTbody');
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:32px;"><div class="spinner"></div></td></tr>';
+                const data = await apiCall(`/fees${q}`);
+                document.getElementById('feeTotal').textContent = `${data.total} records`;
+
+                if (!data.data.length) {
+                    tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><i class="fas fa-rupee-sign"></i><p>No fee records found.</p></div></td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.data.map(f => `
+                <tr>
+                    <td><div style="display:flex;align-items:center;gap:8px;">
+                        <div class="avatar-name">${(f.student?.name || '?').charAt(0)}</div>
+                        <div><div style="font-weight:600;">${f.student?.name || 'Unknown'}</div>
+                        <div style="font-size:0.73rem;color:var(--text-muted);">${f.student?.rollNumber || ''}</div></div>
+                    </div></td>
+                    <td>${f.course?.title || '—'}</td>
+                    <td><span style="text-transform:capitalize;">${f.feeType}</span></td>
+                    <td>${f.month || '—'}</td>
+                    <td>
+                        <div style="font-weight:700;color:${f.status === 'paid' ? 'var(--success)' : '#fff'};">${formatCurrency(f.netAmount)}</div>
+                        ${f.discount > 0 ? `<div style="font-size:0.72rem;color:var(--success);">-${formatCurrency(f.discount)} discount</div>` : ''}
+                    </td>
+                    <td style="color:${new Date(f.dueDate) < new Date() && f.status !== 'paid' ? 'var(--danger)' : 'inherit'};">${formatDate(f.dueDate)}</td>
+                    <td>${statusBadge(f.status)}</td>
+                    <td>${f.paymentMethod ? `<span style="text-transform:capitalize;font-size:0.8rem;">${f.paymentMethod}</span>` : '—'}</td>
+                    <td>
+                        ${f.status !== 'paid' ? `<button class="btn btn-success btn-sm" onclick="openMarkPaid('${f._id}', ${f.netAmount})"><i class="fas fa-check"></i> Mark Paid</button>` : `<span style="color:var(--success);font-size:0.8rem;"><i class="fas fa-check-circle"></i> ${formatDate(f.paidAt)}</span>`}
+                    </td>
+                </tr>
+            `).join('');
+
+                document.getElementById('feePageInfo').textContent = `Page ${page} of ${data.totalPages}`;
+                let pgHtml = '';
+                if (page > 1) pgHtml += `<button class="page-btn" onclick="loadFees(${page - 1})">‹</button>`;
+                for (let i = Math.max(1, page - 2); i <= Math.min(data.totalPages, page + 2); i++) {
+                    pgHtml += `<button class="page-btn ${i === page ? 'active' : ''}" onclick="loadFees(${i})">${i}</button>`;
+                }
+                if (page < data.totalPages) pgHtml += `<button class="page-btn" onclick="loadFees(${page + 1})">›</button>`;
+                document.getElementById('feePaginationBtns').innerHTML = pgHtml;
+            } catch (err) { showToast(err.message, 'error'); }
+        }
+
+        function openMarkPaid(feeId, amount) {
+            document.getElementById('markPaidFeeId').value = feeId;
+            document.getElementById('markPaidAmount').value = amount;
+            openModal('markPaidModal');
+        }
+
+        async function submitMarkPaid() {
+            const feeId = document.getElementById('markPaidFeeId').value;
+            const paymentMethod = document.getElementById('markPaidMethod').value;
+            const transactionId = document.getElementById('markPaidTxn').value;
+            const paidAmount = document.getElementById('markPaidAmount').value;
+            try {
+                await apiCall(`/fees/${feeId}/mark-paid`, 'PATCH', { paymentMethod, transactionId, paidAmount: Number(paidAmount) });
+                showToast('Fee marked as paid! 🎉', 'success');
+                closeModal('markPaidModal');
+                loadFees();
+                loadFeeSummary();
+            } catch (err) { showToast(err.message, 'error'); }
+        }
+
+        async function generateMonthlyFees() {
+            const month = document.getElementById('genMonth').value;
+            const dueDate = document.getElementById('genDueDate').value;
+            if (!month || !dueDate) { showToast('Please fill all fields.', 'warning'); return; }
+            try {
+                const data = await apiCall('/fees/generate-monthly', 'POST', { month, dueDate });
+                showToast(data.message, 'success');
+                closeModal('generateFeesModal');
+                loadFees();
+                loadFeeSummary();
+            } catch (err) { showToast(err.message, 'error'); }
+        }
+
+        loadFeeSummary();
+        loadFees();
+    </script>
+</body>
+
+</html>

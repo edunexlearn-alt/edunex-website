@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students | Edunex Admin</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/admin.css">
+</head>
+
+<body>
+    <div class="admin-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <img src="../assets/images/logo.png" alt="Logo">
+                <div>
+                    <div class="brand">Edunex Academy</div><span class="brand-sub">Admin Panel</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Main</div>
+                <a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="students.html" class="nav-item active"><i class="fas fa-user-graduate"></i> Students</a>
+                <a href="courses.html" class="nav-item"><i class="fas fa-book"></i> Courses</a>
+                <div class="nav-section-title" style="margin-top:12px;">Academic</div>
+                <a href="tests.html" class="nav-item"><i class="fas fa-clipboard-check"></i> Online Tests</a>
+                <a href="fees.html" class="nav-item"><i class="fas fa-rupee-sign"></i> Fee Management</a>
+                <div class="nav-section-title" style="margin-top:12px;">Leads</div>
+                <a href="enquiries.html" class="nav-item"><i class="fas fa-envelope-open-text"></i> Enquiries</a>
+                <div class="nav-section-title" style="margin-top:12px;">Settings</div>
+                <a href="../index.html" target="_blank" class="nav-item"><i class="fas fa-globe"></i> View Website</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="avatar" id="sidebarUserInitial">A</div>
+                    <div class="info">
+                        <div class="name" id="sidebarUserName">Admin</div>
+                        <div class="role">Administrator</div>
+                    </div>
+                    <button class="logout-btn" onclick="logout()" title="Logout"><i
+                            class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <div class="main-content">
+            <header class="top-header">
+                <div>
+                    <div class="page-title">Student Management</div>
+                    <div class="page-subtitle">Manage all enrolled students</div>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" onclick="openModal('addStudentModal')">
+                        <i class="fas fa-plus"></i> Add Student
+                    </button>
+                </div>
+            </header>
+
+            <div class="page-body">
+                <!-- Filters -->
+                <div class="filters-row">
+                    <div class="search-bar" style="flex:1;max-width:320px;">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search by name, mobile, roll no..." id="searchInput">
+                    </div>
+                    <select class="filter-select" id="classFilter" onchange="loadStudents()">
+                        <option value="">All Classes</option>
+                        <option value="5">Class 5</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11-PCM">Class 11 (PCM)</option>
+                        <option value="11-PCB">Class 11 (PCB)</option>
+                        <option value="12-PCM">Class 12 (PCM)</option>
+                        <option value="12-PCB">Class 12 (PCB)</option>
+                        <option value="Computer">Computer</option>
+                    </select>
+                    <select class="filter-select" id="feeFilter" onchange="loadStudents()">
+                        <option value="">All Fee Status</option>
+                        <option value="paid">Paid</option>
+                        <option value="pending">Pending</option>
+                        <option value="overdue">Overdue</option>
+                    </select>
+                    <select class="filter-select" id="activeFilter" onchange="loadStudents()">
+                        <option value="">All Status</option>
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+                    <button class="btn btn-ghost" onclick="exportStudents()"><i class="fas fa-download"></i>
+                        Export</button>
+                </div>
+
+                <!-- Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title" id="tableTitle">All Students</span>
+                        <span style="font-size:0.8rem;color:var(--text-muted);" id="totalCount"></span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Roll No.</th>
+                                    <th>Class</th>
+                                    <th>Mobile</th>
+                                    <th>Parent</th>
+                                    <th>Fee Status</th>
+                                    <th>Joined</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsTbody">
+                                <tr>
+                                    <td colspan="9" style="text-align:center;padding:32px;color:var(--text-muted);">
+                                        <div class="spinner"></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <span id="pageInfo" style="color:var(--text-muted);font-size:0.82rem;"></span>
+                        <div class="pagination-btns" id="paginationBtns"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div class="modal-overlay" id="addStudentModal">
+        <div class="modal" style="max-width:600px;">
+            <div class="modal-header">
+                <span class="modal-title"><i class="fas fa-user-plus"
+                        style="color:var(--primary);margin-right:8px;"></i> Add New Student</span>
+                <button class="modal-close" onclick="closeModal('addStudentModal')"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <form id="addStudentForm">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                    <div class="form-group">
+                        <label class="form-label">Student Name *</label>
+                        <input type="text" class="form-control" name="name" placeholder="Full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mobile *</label>
+                        <input type="text" class="form-control" name="mobile" placeholder="10-digit number" required
+                            maxlength="10">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" placeholder="student@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password *</label>
+                        <input type="text" class="form-control" name="password" placeholder="Min 6 characters" required
+                            value="Edunex@1234">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Class *</label>
+                        <select class="form-control" name="studentClass" required>
+                            <option value="">— Select —</option>
+                            <option value="5">Class 5</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                            <option value="11-PCM">Class 11 (PCM)</option>
+                            <option value="11-PCB">Class 11 (PCB)</option>
+                            <option value="12-PCM">Class 12 (PCM)</option>
+                            <option value="12-PCB">Class 12 (PCB)</option>
+                            <option value="Computer">Computer Course</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <select class="form-control" name="gender">
+                            <option value="">— Select —</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Parent Name</label>
+                        <input type="text" class="form-control" name="parentName" placeholder="Father/Mother name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Parent Mobile</label>
+                        <input type="text" class="form-control" name="parentMobile" placeholder="Parent's number">
+                    </div>
+                    <div class="form-group" style="grid-column:span 2;">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" name="address" placeholder="Full address">
+                    </div>
+                </div>
+                <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px;">
+                    <button type="button" class="btn btn-outline"
+                        onclick="closeModal('addStudentModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="addStudentBtn"><i class="fas fa-save"></i> Add
+                        Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="assets/admin.js"></script>
+    <script>
+        requireAdmin();
+        renderSidebarUser();
+
+        let currentPage = 1;
+
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', debounce(() => { currentPage = 1; loadStudents(); }, 500));
+
+        async function loadStudents(page = currentPage) {
+            currentPage = page;
+            const search = searchInput.value.trim();
+            const cls = document.getElementById('classFilter').value;
+            const feeStatus = document.getElementById('feeFilter').value;
+            const isActive = document.getElementById('activeFilter').value;
+
+            let query = `?page=${page}&limit=15`;
+            if (search) query += `&search=${encodeURIComponent(search)}`;
+            if (cls) query += `&studentClass=${cls}`;
+            if (feeStatus) query += `&feeStatus=${feeStatus}`;
+            if (isActive) query += `&isActive=${isActive}`;
+
+            try {
+                const tbody = document.getElementById('studentsTbody');
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:32px;"><div class="spinner"></div></td></tr>';
+
+                const data = await apiCall(`/admin/students${query}`);
+                document.getElementById('totalCount').textContent = `${data.total} students`;
+
+                if (!data.data.length) {
+                    tbody.innerHTML = '<tr><td colspan="9"><div class="empty-state"><i class="fas fa-user-slash"></i><p>No students found.</p></div></td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.data.map(s => `
+                <tr>
+                    <td><div style="display:flex;align-items:center;gap:10px;">
+                        <div class="avatar-name">${s.name.charAt(0)}</div>
+                        <div><div style="font-weight:600;">${s.name}</div>
+                        <div style="font-size:0.75rem;color:var(--text-muted);">${s.email || s.mobile}</div></div>
+                    </div></td>
+                    <td><span style="font-family:monospace;font-size:0.78rem;background:rgba(59,130,246,0.1);color:var(--primary);padding:2px 8px;border-radius:4px;">${s.rollNumber || '—'}</span></td>
+                    <td>${s.studentClass || '—'}</td>
+                    <td>${s.mobile}</td>
+                    <td>${s.parentName || '—'}</td>
+                    <td>${statusBadge(s.feeStatus || 'pending')}</td>
+                    <td>${formatDate(s.joinDate)}</td>
+                    <td>${statusBadge(s.isActive ? 'active' : 'inactive')}</td>
+                    <td style="display:flex;gap:6px;">
+                        <button class="btn btn-ghost btn-sm btn-icon" onclick="toggleActive('${s._id}', ${s.isActive})" title="${s.isActive ? 'Deactivate' : 'Activate'}">
+                            <i class="fas fa-${s.isActive ? 'ban' : 'check'}" style="color:${s.isActive ? 'var(--danger)' : 'var(--success)'}"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+                // Pagination
+                document.getElementById('pageInfo').textContent = `Page ${page} of ${data.totalPages}`;
+                let paginationHTML = '';
+                if (page > 1) paginationHTML += `<button class="page-btn" onclick="loadStudents(${page - 1})">‹</button>`;
+                for (let i = Math.max(1, page - 2); i <= Math.min(data.totalPages, page + 2); i++) {
+                    paginationHTML += `<button class="page-btn ${i === page ? 'active' : ''}" onclick="loadStudents(${i})">${i}</button>`;
+                }
+                if (page < data.totalPages) paginationHTML += `<button class="page-btn" onclick="loadStudents(${page + 1})">›</button>`;
+                document.getElementById('paginationBtns').innerHTML = paginationHTML;
+
+            } catch (err) { showToast(err.message, 'error'); }
+        }
+
+        async function toggleActive(id, currentState) {
+            if (!confirm(`${currentState ? 'Deactivate' : 'Activate'} this student?`)) return;
+            try {
+                const data = await apiCall(`/admin/students/${id}/toggle-active`, 'PATCH');
+                showToast(data.message, 'success');
+                loadStudents();
+            } catch (err) { showToast(err.message, 'error'); }
+        }
+
+        // Add Student Form
+        document.getElementById('addStudentForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = document.getElementById('addStudentBtn');
+            btn.innerHTML = '<div class="spinner"></div> Saving...';
+            btn.disabled = true;
+
+            const formData = Object.fromEntries(new FormData(this));
+            try {
+                const data = await apiCall('/admin/students', 'POST', formData);
+                showToast(`Student added! Roll: ${data.data.rollNumber}`, 'success');
+                closeModal('addStudentModal');
+                this.reset();
+                loadStudents();
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+            btn.innerHTML = '<i class="fas fa-save"></i> Add Student';
+            btn.disabled = false;
+        });
+
+        function exportStudents() {
+            showToast('Export feature: connect to /api/admin/students?export=csv', 'info');
+        }
+
+        loadStudents();
+    </script>
+</body>
+
+</html>
