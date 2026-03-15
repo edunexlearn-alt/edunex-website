@@ -7,7 +7,7 @@ const API_BASE = 'https://edunex-website-1.onrender.com/api';
 /* ---- Auth Guard ---- */
 function requireAdmin() {
     const token = localStorage.getItem('adminToken');
-    if (!token) { window.location.href = 'index.html'; return null; }
+    if (!token) { window.location.href = '/admin/index.html'; return null; }
     return token;
 }
 
@@ -19,7 +19,7 @@ function logout() {
     if (!confirm('Are you sure you want to logout?')) return;
     localStorage.removeItem('adminToken');
     localStorage.removeItem('adminUser');
-    window.location.href = 'index.html';
+    window.location.href = '/admin/index.html';
 }
 
 /* ---- API Helper ---- */

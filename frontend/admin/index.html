@@ -189,7 +189,7 @@
 
         // If already logged in, redirect
         if (localStorage.getItem('adminToken')) {
-            window.location.href = 'dashboard.html';
+            window.location.href = '/admin/dashboard.html';
         }
 
         document.getElementById('password').addEventListener('keypress', e => {
@@ -222,7 +222,7 @@
                 if (data.success && data.user.role === 'admin') {
                     localStorage.setItem('adminToken', data.token);
                     localStorage.setItem('adminUser', JSON.stringify(data.user));
-                    window.location.href = 'dashboard.html';
+                    window.location.href = '/admin/dashboard.html';
                 } else if (data.success && data.user.role !== 'admin') {
                     showError('Access denied. Admin credentials required.');
                 } else {
