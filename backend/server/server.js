@@ -15,15 +15,31 @@ const app = express();
 
 // ---- Middleware ----
 app.use(cors({
-    origin: [
-        process.env.FRONTEND_URL || 'http://127.0.0.1:5500',
-        'http://localhost:5500',
-        'http://localhost:3000',
-        'http://localhost:5000',
-        'http://127.0.0.1:3000',
-        'http://127.0.0.1:5000',
-        'null'          // for file:// opened HTML files
-    ],
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl)
+        if (!origin) return callback(null, true);
+        
+        const allowedOrigins = [
+            process.env.FRONTEND_URL,
+            'http://localhost:5500',
+            'http://127.0.0.1:5500',
+            'http://localhost:3000',
+            'http://localhost:5000',
+            'http://127.0.0.1:3000',
+            'http://127.0.0.1:5000',
+            'null'
+        ].filter(Boolean);
+
+        // In development, allow any local network IP with port 5500
+        const isDev = process.env.NODE_ENV === 'development';
+        const isPort5500 = origin.endsWith(':5500');
+        
+        if (allowedOrigins.indexOf(origin) !== -1 || (isDev && isPort5500)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization']
