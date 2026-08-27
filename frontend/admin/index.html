@@ -185,7 +185,9 @@
         </div>
     </div>
     <script>
-        const API = 'https://edunex-website-1.onrender.com/api';
+        const API = (['localhost', '127.0.0.1'].includes(location.hostname) || location.hostname.startsWith('192.168.') || location.hostname.startsWith('172.'))
+            ? 'http://localhost:5000/api'
+            : 'https://edunex-website-1.onrender.com/api';
 
         // If already logged in, redirect
         if (localStorage.getItem('adminToken')) {

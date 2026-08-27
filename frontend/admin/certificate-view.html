@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate | Edunex Academy</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --navy: #0a1f4d;
+            --navy-2: #132a5c;
+            --gold: #c5a017;
+            --gold-2: #e4c65a;
+            --ink: #1c2434;
+            --muted: #5a6578;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #1e1e1e;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--ink);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .toolbar {
+            width: 1122px;
+            max-width: 100%;
+            margin: 0 auto 14px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .toolbar button {
+            border: 0;
+            background: var(--navy);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.82rem;
+        }
+
+        .toolbar button.secondary { background: #555; }
+
+        /* A4 landscape at 96dpi ≈ 1123 × 794 */
+        .sheet {
+            width: 1122px;
+            height: 793px;
+            max-width: 100%;
+            margin: 0 auto;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+        }
+
+        .gold-frame {
+            position: absolute;
+            inset: 12px;
+            border: 1.5px solid var(--gold);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .gold-frame::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(197, 160, 23, 0.45);
+        }
+
+        .deco-tl {
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-top: 130px solid var(--navy);
+            border-right: 130px solid transparent;
+            z-index: 1;
+        }
+
+        .deco-tl::after {
+            content: '';
+            position: absolute;
+            top: -130px; left: 0;
+            width: 0; height: 0;
+            border-top: 72px solid var(--gold);
+            border-right: 72px solid transparent;
+        }
+
+        .content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            padding: 28px 40px 58px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---- HEADER ---- */
+        .header {
+            display: grid;
+            grid-template-columns: 100px 1fr 170px;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .seal {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 32% 28%, #f7e9a8, var(--gold) 48%, #8d7208 100%);
+            border: 3px solid #f3e09a;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18), inset 0 0 0 3px rgba(10, 31, 77, 0.12);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--navy);
+            line-height: 1.15;
+            position: relative;
+        }
+
+        .seal .seal-top {
+            font-size: 0.52rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+        }
+
+        .seal .seal-sub {
+            font-size: 0.38rem;
+            font-weight: 600;
+            margin-top: 3px;
+            max-width: 70px;
+            letter-spacing: 0.02em;
+        }
+
+        .seal .ribbon {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 28px;
+            height: 18px;
+            background: var(--gold);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 70%, 0 100%);
+            opacity: 0.95;
+        }
+
+        .brand {
+            text-align: center;
+        }
+
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2px;
+        }
+
+        .brand-icon {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+        }
+
+        .brand h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.65rem;
+            color: var(--navy);
+            letter-spacing: 0.06em;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .brand .tag {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.15rem;
+            color: var(--gold);
+            margin-top: 0;
+        }
+
+        .iso {
+            text-align: right;
+        }
+
+        .iso-label {
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .iso-row {
+            display: flex;
+            gap: 6px;
+            justify-content: flex-end;
+        }
+
+        .iso-chip {
+            width: 58px;
+            height: 46px;
+            border: 1px solid #cfd5e2;
+            border-radius: 4px;
+            background: linear-gradient(180deg, #fff, #f4f6fb);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.5rem;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.15;
+            text-align: center;
+            padding: 2px;
+        }
+
+        .iso-chip small {
+            font-size: 0.4rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        /* ---- TITLE ---- */
+        .title-wrap {
+            text-align: center;
+            margin: 4px 0 8px;
+        }
+
+        .title-wrap h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.85rem;
+            letter-spacing: 0.18em;
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .title-rule {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 2px;
+        }
+
+        .title-rule span {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.05rem;
+            letter-spacing: 0.22em;
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .title-rule::before,
+        .title-rule::after {
+            content: '';
+            width: 70px;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        .student-name {
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.85rem;
+            color: var(--navy);
+            line-height: 1.15;
+            margin: 2px 0 6px;
+            padding: 0 40px;
+        }
+
+        .course-line {
+            text-align: center;
+            font-size: 0.84rem;
+            color: var(--ink);
+        }
+
+        .course-line strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            color: var(--navy);
+            text-transform: uppercase;
+        }
+
+        .subtitle-gold {
+            text-align: center;
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            margin: 6px 0 8px;
+        }
+
+        .desc {
+            text-align: center;
+            font-size: 0.72rem;
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto 14px;
+            line-height: 1.5;
+        }
+
+        /* ---- SKILLS ---- */
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            margin-bottom: 14px;
+        }
+
+        .skill {
+            width: 92px;
+            text-align: center;
+        }
+
+        .skill .icon-wrap {
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 5px;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #f7f9fd, #e8eef8);
+            border: 1px solid #d7deec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-size: 1.15rem;
+        }
+
+        .skill span {
+            display: block;
+            font-size: 0.58rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        /* ---- META ---- */
+        .meta {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0;
+            border-top: 1px solid #e2e7f0;
+            border-bottom: 1px solid #e2e7f0;
+            padding: 10px 0;
+            margin: 0 8px 12px;
+        }
+
+        .meta-item {
+            text-align: center;
+            padding: 0 8px;
+            border-right: 1px solid #e8edf5;
+        }
+
+        .meta-item:last-child { border-right: 0; }
+
+        .meta-item i {
+            color: var(--gold);
+            font-size: 0.78rem;
+            margin-bottom: 3px;
+            display: block;
+        }
+
+        .meta-item .label {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+
+        .meta-item .value {
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.25;
+            word-break: break-word;
+        }
+
+        .meta-item.cert-id .value {
+            font-family: ui-monospace, Consolas, monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ---- BOTTOM: signatures + QR ---- */
+        .bottom {
+            display: grid;
+            grid-template-columns: 1.15fr 0.9fr 1.15fr 130px;
+            gap: 14px;
+            align-items: end;
+            margin-top: auto;
+            padding: 0 8px 4px;
+        }
+
+        .sig { text-align: center; }
+
+        .sig .sign {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.55rem;
+            color: var(--navy);
+            min-height: 36px;
+        }
+
+        .sig .line {
+            width: 150px;
+            margin: 2px auto 5px;
+            border-top: 1px solid #9aa3b5;
+        }
+
+        .sig .who {
+            font-size: 0.58rem;
+            font-weight: 800;
+            letter-spacing: 0.07em;
+            color: var(--navy);
+        }
+
+        .sig .role {
+            font-size: 0.5rem;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            margin-top: 1px;
+        }
+
+        .center-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wreath {
+            width: 108px;
+            height: 72px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.42rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--navy);
+            line-height: 1.25;
+            background: rgba(197, 160, 23, 0.06);
+            position: relative;
+        }
+
+        .wreath::before {
+            content: '★★★';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.55rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            background: #fff;
+            padding: 0 4px;
+        }
+
+        .official-seal {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 2.5px double var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.48rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: 0.04em;
+            line-height: 1.25;
+            background: radial-gradient(circle, rgba(197, 160, 23, 0.12), transparent 70%);
+        }
+
+        .verify-box {
+            border: 1.5px solid var(--gold);
+            border-radius: 4px;
+            padding: 7px 6px 6px;
+            text-align: center;
+            background: #fff;
+            width: 122px;
+        }
+
+        .verify-box .v-title {
+            font-size: 0.5rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .verify-box #qrcode {
+            display: flex;
+            justify-content: center;
+        }
+
+        .verify-box img,
+        .verify-box canvas {
+            width: 78px !important;
+            height: 78px !important;
+        }
+
+        .verify-box p {
+            font-size: 0.42rem;
+            color: var(--muted);
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+
+        /* ---- FOOTER ---- */
+        .footer-bar {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 44px;
+            background: var(--navy);
+            color: #fff;
+            display: grid;
+            grid-template-columns: 1.1fr 1.4fr 1.3fr;
+            align-items: center;
+            padding: 0 28px;
+            font-size: 0.5rem;
+            z-index: 6;
+            gap: 10px;
+        }
+
+        .footer-bar span {
+            opacity: 0.95;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .footer-bar i { color: var(--gold-2); margin-right: 4px; }
+        .footer-bar .center { text-align: center; }
+        .footer-bar .right { text-align: right; }
+
+        .loading, .error {
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+            font-size: 1.1rem;
+        }
+
+        .error { color: #ffb4b4; }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .toolbar { display: none !important; }
+            .sheet {
+                box-shadow: none;
+                width: 297mm;
+                height: 210mm;
+            }
+            @page { size: A4 landscape; margin: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbar" id="toolbar">
+        <button class="secondary" onclick="window.close()">Close</button>
+        <button onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</button>
+    </div>
+    <div id="root" class="loading">Loading certificate…</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="assets/admin.js"></script>
+    <script>
+        requireAdmin();
+
+        const params = new URLSearchParams(location.search);
+        const hashParams = new URLSearchParams(location.hash.replace(/^#/, ''));
+        const id = params.get('id') || hashParams.get('id') || sessionStorage.getItem('viewCertId');
+        const certNo = params.get('cert') || hashParams.get('cert');
+        if (id) sessionStorage.removeItem('viewCertId');
+
+        const skillIcons = {
+            python: 'fa-brands fa-python',
+            excel: 'fa-solid fa-file-excel',
+            sql: 'fa-solid fa-database',
+            'power bi': 'fa-solid fa-chart-column',
+            'data visualization': 'fa-solid fa-chart-line',
+            'data analysis': 'fa-solid fa-magnifying-glass-chart'
+        };
+
+        const brandIconSvg = `
+            <svg class="brand-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="6" y="38" width="8" height="16" rx="1.5" fill="#0a1f4d"/>
+                <rect x="18" y="30" width="8" height="24" rx="1.5" fill="#0a1f4d"/>
+                <rect x="30" y="22" width="8" height="32" rx="1.5" fill="#0a1f4d"/>
+                <rect x="42" y="14" width="8" height="40" rx="1.5" fill="#c5a017"/>
+                <path d="M8 28c8-10 16-14 26-12 6 1 12 5 18 12" fill="none" stroke="#c5a017" stroke-width="3" stroke-linecap="round"/>
+                <path d="M46 16l10 2-2 10" fill="none" stroke="#c5a017" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 52h44" stroke="#0a1f4d" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>`;
+
+        function fmt(d) {
+            if (!d) return '—';
+            return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+        }
+
+        function esc(s) {
+            return String(s || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        async function load() {
+            try {
+                let cert;
+                if (id) {
+                    const res = await apiCall('/certificates/' + id);
+                    cert = res.data;
+                } else if (certNo) {
+                    const res = await fetch(`${API_BASE}/certificates/verify/${encodeURIComponent(certNo)}`);
+                    const data = await res.json();
+                    if (!data.valid) throw new Error(data.message || 'Invalid');
+                    cert = data.data;
+                } else {
+                    throw new Error('Missing certificate id');
+                }
+                render(cert);
+            } catch (err) {
+                document.getElementById('root').className = 'error';
+                document.getElementById('root').textContent = err.message || 'Failed to load';
+            }
+        }
+
+        function render(c) {
+            const verifyUrl = `${location.origin}/pages/verify.html?id=${encodeURIComponent(c.certificateId)}`;
+            const skills = (c.skills && c.skills.length)
+                ? c.skills.slice(0, 6)
+                : ['Python', 'Excel', 'SQL', 'Power BI', 'Data Visualization', 'Data Analysis'];
+
+            document.title = `${c.certificateId} | Edunex Certificate`;
+            document.getElementById('root').outerHTML = `
+            <div class="sheet" id="root">
+                <div class="gold-frame"></div>
+                <div class="deco-tl"></div>
+                <div class="content">
+                    <div class="header">
+                        <div class="seal">
+                            <div class="seal-top">EDUNEX<br>ACADEMY</div>
+                            <div class="seal-sub">EMPOWERING MINDS BUILDING FUTURES</div>
+                            <div class="ribbon"></div>
+                        </div>
+                        <div class="brand">
+                            <div class="brand-mark">
+                                ${brandIconSvg}
+                                <div>
+                                    <h1>EDUNEX ACADEMY</h1>
+                                    <div class="tag">Learn Today, Lead Tomorrow</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="iso">
+                            <div class="iso-label">ISO 9001:2015 CERTIFIED</div>
+                            <div class="iso-row">
+                                <div class="iso-chip">IAF<small>MLA Member</small></div>
+                                <div class="iso-chip">EGAC<small>CAB #119012</small></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="title-wrap">
+                        <h2>CERTIFICATE</h2>
+                        <div class="title-rule"><span>OF COMPLETION</span></div>
+                    </div>
+
+                    <div class="intro">This is to certify that</div>
+                    <div class="student-name">${esc(c.studentName)}</div>
+                    <div class="course-line">
+                        has successfully completed the
+                        <strong>${esc(c.courseTitle)}</strong>
+                    </div>
+                    <div class="subtitle-gold">${esc(c.programSubtitle || 'TRAINING PROGRAM')}</div>
+                    <p class="desc">${esc(c.description || 'This program was designed to provide in-depth knowledge and hands-on experience.')}</p>
+
+                    <div class="skills">
+                        ${skills.map(s => {
+                const key = s.toLowerCase();
+                const icon = skillIcons[key] || 'fa-solid fa-circle-check';
+                return `<div class="skill"><div class="icon-wrap"><i class="${icon}"></i></div><span>${esc(s)}</span></div>`;
+            }).join('')}
+                    </div>
+
+                    <div class="meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="label">Course Duration</div>
+                            <div class="value">${esc(c.duration || '—')}</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <div class="label">Batch</div>
+                            <div class="value">${esc(c.batch || '—')}</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-laptop"></i>
+                            <div class="label">Mode</div>
+                            <div class="value">${esc(c.mode || '—')}</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <div class="label">Start Date</div>
+                            <div class="value">${fmt(c.startDate)}</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <div class="label">Completion Date</div>
+                            <div class="value">${fmt(c.completionDate)}</div>
+                        </div>
+                        <div class="meta-item cert-id">
+                            <i class="fas fa-certificate"></i>
+                            <div class="label">Certificate ID</div>
+                            <div class="value">${esc(c.certificateId)}</div>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <div class="sig">
+                            <div class="sign">K. K. Sahani</div>
+                            <div class="line"></div>
+                            <div class="who">K. K. SAHANI</div>
+                            <div class="role">FOUNDER &amp; DIRECTOR, EDUNEX ACADEMY</div>
+                        </div>
+                        <div class="center-col">
+                            <div class="wreath">YOUR JOURNEY TOWARDS DATA EXCELLENCE STARTS HERE</div>
+                            <div class="official-seal">EDUNEX<br>ACADEMY<br>OFFICIAL<br>SEAL</div>
+                        </div>
+                        <div class="sig">
+                            <div class="sign">Academic Head</div>
+                            <div class="line"></div>
+                            <div class="who">ACADEMIC HEAD</div>
+                            <div class="role">EDUNEX ACADEMY</div>
+                        </div>
+                        <div class="verify-box">
+                            <div class="v-title">VERIFY CERTIFICATE</div>
+                            <div id="qrcode"></div>
+                            <p>Scan to verify or visit<br>www.edunexacademy.com/verify</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bar">
+                    <span><i class="fas fa-award"></i>ISO 9001:2015 Certified Training Institute</span>
+                    <span class="center"><i class="fas fa-location-dot"></i>EDUNEX ACADEMY, SCO 123, First Floor, Sector 38-C, Chandigarh - 160014</span>
+                    <span class="right"><i class="fas fa-globe"></i>www.edunexacademy.com &nbsp;<i class="fas fa-envelope"></i>info@edunexacademy.com &nbsp;<i class="fas fa-phone"></i>+91 98765 43210</span>
+                </div>
+            </div>`;
+
+            try {
+                new QRCode(document.getElementById('qrcode'), {
+                    text: verifyUrl,
+                    width: 78,
+                    height: 78,
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+            } catch (e) { /* qr optional */ }
+        }
+
+        load();
+    </script>
+</body>
+
+</html>

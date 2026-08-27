@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Verify an Edunex Academy certificate by entering the certificate number.">
+    <title>Verify Certificate | Edunex Academy</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <style>
+        .verify-hero {
+            padding: 120px 0 48px;
+            background: linear-gradient(160deg, #0b1f4a 0%, #1a3a6b 50%, #0d2847 100%);
+            color: #fff;
+            text-align: center;
+        }
+
+        .verify-hero h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            margin-bottom: 10px;
+        }
+
+        .verify-hero p { opacity: 0.85; max-width: 520px; margin: 0 auto; }
+
+        .verify-box {
+            max-width: 560px;
+            margin: -36px auto 60px;
+            background: #fff;
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: 0 16px 40px rgba(11, 31, 74, 0.18);
+            position: relative;
+            z-index: 2;
+        }
+
+        .verify-box label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .verify-box input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #dde3ee;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: ui-monospace, monospace;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .verify-box input:focus {
+            outline: none;
+            border-color: #0b1f4a;
+        }
+
+        .verify-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .verify-actions button {
+            flex: 1;
+            border: none;
+            background: #0b1f4a;
+            color: #fff;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .verify-actions button:disabled { opacity: 0.6; cursor: wait; }
+
+        .hint {
+            margin-top: 12px;
+            font-size: 0.78rem;
+            color: #888;
+            text-align: center;
+        }
+
+        .result {
+            max-width: 640px;
+            margin: 0 auto 80px;
+            display: none;
+        }
+
+        .result.show { display: block; }
+
+        .result-card {
+            border-radius: 14px;
+            padding: 28px;
+            border: 1px solid #e5e9f0;
+            background: #fff;
+        }
+
+        .result-card.valid { border-color: #27ae60; background: linear-gradient(180deg, #f0fff6, #fff); }
+        .result-card.invalid { border-color: #e74c3c; background: linear-gradient(180deg, #fff5f5, #fff); }
+
+        .result-status {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .result-status i { font-size: 2rem; }
+        .result-card.valid .result-status i { color: #27ae60; }
+        .result-card.invalid .result-status i { color: #e74c3c; }
+
+        .result-status h2 { font-size: 1.25rem; margin: 0; }
+        .result-status p { margin: 2px 0 0; color: #666; font-size: 0.9rem; }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .result-grid .item {
+            background: #f7f9fc;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .result-grid .item .lbl {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #888;
+            margin-bottom: 4px;
+        }
+
+        .result-grid .item .val {
+            font-weight: 700;
+            color: #0b1f4a;
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+
+        @media (max-width: 600px) {
+            .result-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/images/logo.png" alt="Edunex Academy Logo" class="nav-logo">
+                <div class="brand-text">
+                    <span class="brand-name">Edunex</span>
+                    <span class="brand-sub">Academy</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="verify.html" class="nav-link active">Verify</a></li>
+                <li><a href="login.html" class="nav-link btn-login">Student Login</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="verify-hero">
+        <div class="container">
+            <h1><i class="fas fa-shield-alt"></i> Verify Certificate</h1>
+            <p>Enter the certificate number printed on the document (format: EDNX-YEAR-COURSE-SERIAL).</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="verify-box">
+            <label for="certInput">Certificate Number</label>
+            <input type="text" id="certInput" placeholder="EDNX-2026-DATA-001" autocomplete="off">
+            <div class="verify-actions">
+                <button type="button" id="verifyBtn" onclick="verifyCert()">
+                    <i class="fas fa-search"></i> Verify
+                </button>
+            </div>
+            <p class="hint">Example: EDNX-2026-DATA-001 &nbsp;·&nbsp; EDNX-2026-PYTHON-012</p>
+        </div>
+
+        <div class="result" id="result">
+            <div class="result-card" id="resultCard">
+                <div class="result-status">
+                    <i id="resultIcon" class="fas fa-check-circle"></i>
+                    <div>
+                        <h2 id="resultTitle">Valid</h2>
+                        <p id="resultMsg"></p>
+                    </div>
+                </div>
+                <div class="result-grid" id="resultGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        const API = (['localhost', '127.0.0.1'].includes(location.hostname) || location.hostname.startsWith('192.168.') || location.hostname.startsWith('172.'))
+            ? 'http://localhost:5000/api'
+            : 'https://edunex-website-1.onrender.com/api';
+
+        const params = new URLSearchParams(location.search);
+        if (params.get('id')) {
+            document.getElementById('certInput').value = params.get('id');
+            verifyCert();
+        }
+
+        document.getElementById('certInput').addEventListener('keypress', e => {
+            if (e.key === 'Enter') verifyCert();
+        });
+
+        function fmt(d) {
+            if (!d) return '—';
+            return new Date(d).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+        }
+
+        async function verifyCert() {
+            const code = document.getElementById('certInput').value.trim().toUpperCase();
+            const btn = document.getElementById('verifyBtn');
+            const result = document.getElementById('result');
+            const card = document.getElementById('resultCard');
+
+            if (!code) {
+                alert('Please enter a certificate number.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+            result.classList.remove('show');
+
+            try {
+                const res = await fetch(`${API}/certificates/verify/${encodeURIComponent(code)}`);
+                const data = await res.json();
+
+                result.classList.add('show');
+                card.className = 'result-card ' + (data.valid ? 'valid' : 'invalid');
+                document.getElementById('resultIcon').className = data.valid
+                    ? 'fas fa-check-circle'
+                    : 'fas fa-times-circle';
+                document.getElementById('resultTitle').textContent = data.valid
+                    ? 'Certificate is Valid'
+                    : 'Certificate Not Valid';
+                document.getElementById('resultMsg').textContent = data.message || '';
+
+                const d = data.data || {};
+                const grid = document.getElementById('resultGrid');
+                if (data.valid && d.certificateId) {
+                    grid.innerHTML = `
+                        <div class="item"><div class="lbl">Certificate ID</div><div class="val">${d.certificateId}</div></div>
+                        <div class="item"><div class="lbl">Student Name</div><div class="val">${d.studentName || '—'}</div></div>
+                        <div class="item"><div class="lbl">Course</div><div class="val">${d.courseTitle || '—'}</div></div>
+                        <div class="item"><div class="lbl">Duration</div><div class="val">${d.duration || '—'}</div></div>
+                        <div class="item"><div class="lbl">Batch</div><div class="val">${d.batch || '—'}</div></div>
+                        <div class="item"><div class="lbl">Mode</div><div class="val">${d.mode || '—'}</div></div>
+                        <div class="item"><div class="lbl">Start Date</div><div class="val">${fmt(d.startDate)}</div></div>
+                        <div class="item"><div class="lbl">Completion Date</div><div class="val">${fmt(d.completionDate)}</div></div>
+                    `;
+                } else if (d.certificateId) {
+                    grid.innerHTML = `
+                        <div class="item"><div class="lbl">Certificate ID</div><div class="val">${d.certificateId}</div></div>
+                        <div class="item"><div class="lbl">Status</div><div class="val">${d.status || 'invalid'}</div></div>
+                    `;
+                } else {
+                    grid.innerHTML = '';
+                }
+            } catch (err) {
+                result.classList.add('show');
+                card.className = 'result-card invalid';
+                document.getElementById('resultIcon').className = 'fas fa-exclamation-triangle';
+                document.getElementById('resultTitle').textContent = 'Connection Error';
+                document.getElementById('resultMsg').textContent = 'Could not reach the server. Please try again.';
+                document.getElementById('resultGrid').innerHTML = '';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-search"></i> Verify';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -2,7 +2,9 @@
    ADMIN GLOBAL JS (admin/assets/admin.js)
    Shared utilities: auth guard, toast, sidebar, API calls
    ============================================================ */
-const API_BASE = 'https://edunex-website-1.onrender.com/api';
+const API_BASE = (['localhost', '127.0.0.1'].includes(location.hostname) || location.hostname.startsWith('192.168.') || location.hostname.startsWith('172.'))
+    ? 'http://localhost:5000/api'
+    : 'https://edunex-website-1.onrender.com/api';
 
 /* ---- Auth Guard ---- */
 function requireAdmin() {
@@ -108,9 +110,9 @@ function timeAgo(d) {
 /* ---- Badge HTML ---- */
 function statusBadge(status) {
     const map = {
-        'active': 'badge-success', 'paid': 'badge-success', 'enrolled': 'badge-success',
+        'active': 'badge-success', 'paid': 'badge-success', 'enrolled': 'badge-success', 'valid': 'badge-success',
         'pending': 'badge-warning', 'partial': 'badge-warning', 'interested': 'badge-warning',
-        'overdue': 'badge-danger', 'not-interested': 'badge-danger', 'dropped': 'badge-danger',
+        'overdue': 'badge-danger', 'not-interested': 'badge-danger', 'dropped': 'badge-danger', 'revoked': 'badge-danger',
         'new': 'badge-info', 'contacted': 'badge-info',
         'inactive': 'badge-muted', 'closed': 'badge-muted',
         'in-progress': 'badge-primary', 'submitted': 'badge-success'

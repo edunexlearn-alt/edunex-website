@@ -30,11 +30,11 @@ app.use(cors({
             'null'
         ].filter(Boolean);
 
-        // In development, allow any local network IP with port 5500
+        // In development, allow any local network origin (Live Server / serve)
         const isDev = process.env.NODE_ENV === 'development';
-        const isPort5500 = origin.endsWith(':5500');
+        const isLocalPort = /:(3000|5000|5500|8080)$/.test(origin || '');
         
-        if (allowedOrigins.indexOf(origin) !== -1 || (isDev && isPort5500)) {
+        if (allowedOrigins.indexOf(origin) !== -1 || (isDev && isLocalPort)) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
@@ -80,6 +80,7 @@ app.use('/api/fees', require('./routes/fees'));
 app.use('/api/enquiries', require('./routes/enquiries'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/payments', require('./routes/payments'));
+app.use('/api/certificates', require('./routes/certificates'));
 
 // ---- API Root ----
 app.get('/api', (req, res) => {
@@ -95,7 +96,8 @@ app.get('/api', (req, res) => {
             fees: '/api/fees',
             enquiries: '/api/enquiries',
             admin: '/api/admin',
-            payments: '/api/payments'
+            payments: '/api/payments',
+            certificates: '/api/certificates'
         }
     });
 });
