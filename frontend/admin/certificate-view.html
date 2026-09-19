@@ -5,19 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificate | Edunex Academy</title>
-    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpeg">
     <link
-        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --navy: #0a1f4d;
-            --navy-2: #132a5c;
-            --gold: #c5a017;
-            --gold-2: #e4c65a;
-            --ink: #1c2434;
+            --navy: #0b2a5b;
+            --navy-deep: #071f45;
+            --gold: #c9a227;
+            --gold-soft: #d4b84a;
+            --ink: #1a2436;
             --muted: #5a6578;
+            --cream: #fbf8f1;
+            --line: #d8c98a;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,231 +53,302 @@
 
         .toolbar button.secondary { background: #555; }
 
-        /* A4 landscape at 96dpi ≈ 1123 × 794 */
+        /* A4 landscape ≈ 1123 × 794 at 96dpi */
         .sheet {
             width: 1122px;
             height: 793px;
             max-width: 100%;
             margin: 0 auto;
-            background: #fff;
+            background:
+                radial-gradient(ellipse at 70% 45%, rgba(11, 42, 91, 0.03), transparent 55%),
+                linear-gradient(180deg, #fffef9 0%, var(--cream) 100%);
             position: relative;
             overflow: hidden;
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
         }
 
-        .gold-frame {
-            position: absolute;
-            inset: 12px;
-            border: 1.5px solid var(--gold);
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .gold-frame::before {
+        /* Soft side waves */
+        .sheet::before,
+        .sheet::after {
             content: '';
             position: absolute;
-            inset: 4px;
-            border: 1px solid rgba(197, 160, 23, 0.45);
+            top: 8%;
+            bottom: 12%;
+            width: 120px;
+            opacity: 0.07;
+            background:
+                repeating-linear-gradient(
+                    180deg,
+                    transparent 0 10px,
+                    rgba(11, 42, 91, 0.35) 10px 11px
+                );
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .deco-tl {
+        .sheet::before {
+            left: 0;
+            mask-image: linear-gradient(90deg, #000, transparent);
+            -webkit-mask-image: linear-gradient(90deg, #000, transparent);
+            border-radius: 0 50% 50% 0 / 0 40% 40% 0;
+        }
+
+        .sheet::after {
+            right: 0;
+            mask-image: linear-gradient(270deg, #000, transparent);
+            -webkit-mask-image: linear-gradient(270deg, #000, transparent);
+            border-radius: 50% 0 0 50% / 40% 0 0 40%;
+        }
+
+        .watermark {
             position: absolute;
-            top: 0; left: 0;
-            width: 0; height: 0;
-            border-top: 130px solid var(--navy);
-            border-right: 130px solid transparent;
+            right: 10%;
+            top: 34%;
+            width: 240px;
+            height: 240px;
+            opacity: 0.05;
+            background: url('../assets/images/logo.jpeg') center top / cover no-repeat;
+            pointer-events: none;
             z-index: 1;
         }
 
-        .deco-tl::after {
-            content: '';
+        /* Corner triangles — top-left */
+        .corner-tl {
             position: absolute;
-            top: -130px; left: 0;
+            top: 0; left: 0;
             width: 0; height: 0;
-            border-top: 72px solid var(--gold);
-            border-right: 72px solid transparent;
+            border-top: 120px solid var(--navy);
+            border-right: 120px solid transparent;
+            z-index: 2;
+        }
+
+        .corner-tl-gold {
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-top: 92px solid var(--gold);
+            border-right: 92px solid transparent;
+            z-index: 2;
+        }
+
+        .corner-tl-inner {
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-top: 84px solid var(--cream);
+            border-right: 84px solid transparent;
+            z-index: 2;
+        }
+
+        /* Corner triangles — bottom-right */
+        .corner-br {
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 0; height: 0;
+            border-bottom: 120px solid var(--navy);
+            border-left: 120px solid transparent;
+            z-index: 2;
+        }
+
+        .corner-br-gold {
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 0; height: 0;
+            border-bottom: 92px solid var(--gold);
+            border-left: 92px solid transparent;
+            z-index: 2;
+        }
+
+        .corner-br-inner {
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 0; height: 0;
+            border-bottom: 84px solid var(--cream);
+            border-left: 84px solid transparent;
+            z-index: 2;
         }
 
         .content {
             position: relative;
             z-index: 3;
             height: 100%;
-            padding: 28px 40px 58px;
+            padding: 20px 48px 14px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .body-block {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            flex: 1;
+            justify-content: space-evenly;
+            min-height: 0;
+            padding: 4px 0;
+        }
+
+        .bottom-block {
+            flex-shrink: 0;
+            padding-top: 4px;
         }
 
         /* ---- HEADER ---- */
         .header {
-            display: grid;
-            grid-template-columns: 100px 1fr 170px;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 6px;
-        }
-
-        .seal {
-            width: 88px;
-            height: 88px;
-            border-radius: 50%;
-            background:
-                radial-gradient(circle at 32% 28%, #f7e9a8, var(--gold) 48%, #8d7208 100%);
-            border: 3px solid #f3e09a;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18), inset 0 0 0 3px rgba(10, 31, 77, 0.12);
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--navy);
-            line-height: 1.15;
-            position: relative;
-        }
-
-        .seal .seal-top {
-            font-size: 0.52rem;
-            font-weight: 800;
-            letter-spacing: 0.06em;
-        }
-
-        .seal .seal-sub {
-            font-size: 0.38rem;
-            font-weight: 600;
-            margin-top: 3px;
-            max-width: 70px;
-            letter-spacing: 0.02em;
-        }
-
-        .seal .ribbon {
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 28px;
-            height: 18px;
-            background: var(--gold);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 70%, 0 100%);
-            opacity: 0.95;
-        }
-
-        .brand {
-            text-align: center;
-        }
-
-        .brand-mark {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 2px;
-        }
-
-        .brand-icon {
-            width: 46px;
-            height: 46px;
+            justify-content: space-between;
+            margin-bottom: 0;
+            padding: 0 4px;
             flex-shrink: 0;
         }
 
-        .brand h1 {
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            width: 58px;
+            height: 58px;
+            object-fit: cover;
+            object-position: center 14%;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .brand-text h1 {
             font-family: 'Libre Baskerville', serif;
-            font-size: 1.65rem;
+            font-size: 1.22rem;
             color: var(--navy);
-            letter-spacing: 0.06em;
+            letter-spacing: 0.04em;
             font-weight: 700;
             line-height: 1.1;
         }
 
-        .brand .tag {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.15rem;
-            color: var(--gold);
-            margin-top: 0;
+        .brand-text .tag {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: 0.68rem;
+            color: #3d6bb3;
+            margin-top: 2px;
         }
 
-        .iso {
-            text-align: right;
-        }
-
-        .iso-label {
-            font-size: 0.62rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            color: var(--navy);
-            margin-bottom: 6px;
-        }
-
-        .iso-row {
+        .iaf {
             display: flex;
-            gap: 6px;
-            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
         }
 
-        .iso-chip {
-            width: 58px;
-            height: 46px;
-            border: 1px solid #cfd5e2;
-            border-radius: 4px;
-            background: linear-gradient(180deg, #fff, #f4f6fb);
+        .iaf-badge {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 35% 30%, #4a8fd4, #1a4f9c 60%, #0b2a5b 100%);
+            border: 2px solid #c9a227;
+            color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 0.5rem;
-            font-weight: 800;
-            color: var(--navy);
-            line-height: 1.15;
             text-align: center;
-            padding: 2px;
+            line-height: 1.05;
+            box-shadow: 0 2px 8px rgba(11, 42, 91, 0.25);
+            flex-shrink: 0;
         }
 
-        .iso-chip small {
-            font-size: 0.4rem;
+        .iaf-badge .iaf-top {
+            font-size: 0.42rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            opacity: 0.9;
+        }
+
+        .iaf-badge .iaf-mid {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+        }
+
+        .iaf-badge .iaf-bot {
+            font-size: 0.36rem;
             font-weight: 600;
-            color: var(--muted);
+            letter-spacing: 0.02em;
+            max-width: 42px;
+            margin-top: 1px;
+        }
+
+        .iaf-copy {
+            border-left: 1.5px solid var(--gold);
+            padding-left: 10px;
+            font-size: 0.58rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.35;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
         }
 
         /* ---- TITLE ---- */
-        .title-wrap {
+        .title-block {
             text-align: center;
-            margin: 4px 0 8px;
+            margin-top: 0;
         }
 
-        .title-wrap h2 {
+        .certify-block {
+            text-align: center;
+        }
+
+        .certify-block .intro { margin-bottom: 2px; }
+        .certify-block .name-rule { margin-top: 2px; margin-bottom: 6px; }
+        .certify-block .completed-line { margin-top: 0; }
+
+        .course-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .title-block .of {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            color: var(--navy);
+            text-transform: uppercase;
+        }
+
+        .title-block h2 {
             font-family: 'Libre Baskerville', serif;
-            font-size: 1.85rem;
-            letter-spacing: 0.18em;
+            font-size: 1.75rem;
+            letter-spacing: 0.14em;
             color: var(--navy);
             font-weight: 700;
-        }
-
-        .title-rule {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 18px;
             margin-top: 2px;
         }
 
-        .title-rule span {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 1.05rem;
-            letter-spacing: 0.22em;
-            color: var(--navy);
-            font-weight: 700;
-        }
-
-        .title-rule::before,
-        .title-rule::after {
+        .title-block h2::before,
+        .title-block h2::after {
             content: '';
-            width: 70px;
+            width: 72px;
             height: 1.5px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
         .intro {
             text-align: center;
-            font-size: 0.82rem;
-            color: var(--muted);
-            margin-top: 6px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            color: var(--navy);
+            margin-top: 0;
+            text-transform: uppercase;
         }
 
         .student-name {
@@ -284,284 +356,314 @@
             font-family: 'Great Vibes', cursive;
             font-size: 2.85rem;
             color: var(--navy);
-            line-height: 1.15;
-            margin: 2px 0 6px;
+            line-height: 1.05;
+            margin: 0 auto;
             padding: 0 40px;
+            max-width: 900px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
         }
 
-        .course-line {
+        .name-rule {
+            width: min(400px, 55%);
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto;
+        }
+
+        .completed-line {
             text-align: center;
-            font-size: 0.84rem;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.88rem;
             color: var(--ink);
+            margin-bottom: 0;
         }
 
-        .course-line strong {
-            display: block;
-            margin-top: 4px;
-            font-size: 0.95rem;
-            letter-spacing: 0.06em;
-            color: var(--navy);
-            text-transform: uppercase;
-        }
-
-        .subtitle-gold {
-            text-align: center;
-            color: var(--gold);
-            font-weight: 800;
-            font-size: 0.78rem;
-            letter-spacing: 0.16em;
-            margin: 6px 0 8px;
-        }
-
-        .desc {
-            text-align: center;
-            font-size: 0.72rem;
-            color: var(--muted);
-            max-width: 680px;
-            margin: 0 auto 14px;
-            line-height: 1.5;
-        }
-
-        /* ---- SKILLS ---- */
-        .skills {
-            display: flex;
-            justify-content: center;
-            gap: 22px;
-            margin-bottom: 14px;
-        }
-
-        .skill {
-            width: 92px;
-            text-align: center;
-        }
-
-        .skill .icon-wrap {
-            width: 42px;
-            height: 42px;
-            margin: 0 auto 5px;
-            border-radius: 10px;
-            background: linear-gradient(145deg, #f7f9fd, #e8eef8);
-            border: 1px solid #d7deec;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--navy);
-            font-size: 1.15rem;
-        }
-
-        .skill span {
-            display: block;
-            font-size: 0.58rem;
-            font-weight: 700;
-            color: var(--navy);
-            line-height: 1.2;
-        }
-
-        /* ---- META ---- */
-        .meta {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 0;
-            border-top: 1px solid #e2e7f0;
-            border-bottom: 1px solid #e2e7f0;
-            padding: 10px 0;
-            margin: 0 8px 12px;
-        }
-
-        .meta-item {
-            text-align: center;
-            padding: 0 8px;
-            border-right: 1px solid #e8edf5;
-        }
-
-        .meta-item:last-child { border-right: 0; }
-
-        .meta-item i {
-            color: var(--gold);
-            font-size: 0.78rem;
-            margin-bottom: 3px;
-            display: block;
-        }
-
-        .meta-item .label {
-            font-size: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--muted);
-            margin-bottom: 2px;
-            font-weight: 600;
-        }
-
-        .meta-item .value {
-            font-size: 0.68rem;
-            font-weight: 800;
-            color: var(--navy);
-            line-height: 1.25;
-            word-break: break-word;
-        }
-
-        .meta-item.cert-id .value {
-            font-family: ui-monospace, Consolas, monospace;
-            font-size: 0.62rem;
-            letter-spacing: 0.02em;
-        }
-
-        /* ---- BOTTOM: signatures + QR ---- */
-        .bottom {
-            display: grid;
-            grid-template-columns: 1.15fr 0.9fr 1.15fr 130px;
-            gap: 14px;
-            align-items: end;
-            margin-top: auto;
-            padding: 0 8px 4px;
-        }
-
-        .sig { text-align: center; }
-
-        .sig .sign {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.55rem;
-            color: var(--navy);
-            min-height: 36px;
-        }
-
-        .sig .line {
-            width: 150px;
-            margin: 2px auto 5px;
-            border-top: 1px solid #9aa3b5;
-        }
-
-        .sig .who {
-            font-size: 0.58rem;
-            font-weight: 800;
-            letter-spacing: 0.07em;
-            color: var(--navy);
-        }
-
-        .sig .role {
-            font-size: 0.5rem;
-            color: var(--muted);
-            letter-spacing: 0.04em;
-            margin-top: 1px;
-        }
-
-        .center-col {
+        /* ---- COURSE RIBBON ---- */
+        .ribbon-wrap {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            margin: 0 auto 4px;
         }
 
-        .wreath {
-            width: 108px;
-            height: 72px;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8px;
-            font-size: 0.42rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            color: var(--navy);
-            line-height: 1.25;
-            background: rgba(197, 160, 23, 0.06);
+        .ribbon {
             position: relative;
-        }
-
-        .wreath::before {
-            content: '★★★';
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.55rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-            background: #fff;
-            padding: 0 4px;
-        }
-
-        .official-seal {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            border: 2.5px double var(--navy);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            font-size: 0.48rem;
-            font-weight: 800;
-            color: var(--navy);
-            letter-spacing: 0.04em;
-            line-height: 1.25;
-            background: radial-gradient(circle, rgba(197, 160, 23, 0.12), transparent 70%);
-        }
-
-        .verify-box {
-            border: 1.5px solid var(--gold);
-            border-radius: 4px;
-            padding: 7px 6px 6px;
-            text-align: center;
-            background: #fff;
-            width: 122px;
-        }
-
-        .verify-box .v-title {
-            font-size: 0.5rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            color: var(--navy);
-            margin-bottom: 4px;
-        }
-
-        .verify-box #qrcode {
-            display: flex;
-            justify-content: center;
-        }
-
-        .verify-box img,
-        .verify-box canvas {
-            width: 78px !important;
-            height: 78px !important;
-        }
-
-        .verify-box p {
-            font-size: 0.42rem;
-            color: var(--muted);
-            margin-top: 4px;
-            line-height: 1.3;
-        }
-
-        /* ---- FOOTER ---- */
-        .footer-bar {
-            position: absolute;
-            left: 0; right: 0; bottom: 0;
-            height: 44px;
-            background: var(--navy);
             color: #fff;
-            display: grid;
-            grid-template-columns: 1.1fr 1.4fr 1.3fr;
-            align-items: center;
-            padding: 0 28px;
-            font-size: 0.5rem;
-            z-index: 6;
-            gap: 10px;
+            min-width: 280px;
+            max-width: 680px;
+            padding: 11px 52px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a4588 0%, var(--navy) 45%, var(--navy-deep) 100%);
         }
 
-        .footer-bar span {
-            opacity: 0.95;
+        /* Gold outline via slightly larger gold layer behind */
+        .ribbon-outer {
+            position: relative;
+            display: inline-block;
+            padding: 2.5px;
+            background: var(--gold);
+            filter: drop-shadow(0 4px 10px rgba(11, 42, 91, 0.28));
+            clip-path: polygon(
+                22px 0%,
+                calc(100% - 22px) 0%,
+                100% 50%,
+                calc(100% - 22px) 100%,
+                22px 100%,
+                0% 50%
+            );
+        }
+
+        .ribbon-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.22rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            max-width: 580px;
+            position: relative;
+            z-index: 1;
         }
 
-        .footer-bar i { color: var(--gold-2); margin-right: 4px; }
-        .footer-bar .center { text-align: center; }
-        .footer-bar .right { text-align: right; }
+        .course-label {
+            margin-top: 6px;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .course-label::before,
+        .course-label::after {
+            content: '';
+            width: 48px;
+            height: 1.5px;
+            background: var(--gold);
+        }
+
+        .conducted {
+            text-align: center;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.78rem;
+            color: var(--ink);
+            margin: 0;
+        }
+
+        /* ---- DATES ---- */
+        .dates {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            margin: 0 auto;
+        }
+
+        .date-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 210px;
+        }
+
+        .date-item .cal {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            color: var(--navy);
+        }
+
+        .date-item .cal svg {
+            width: 28px;
+            height: 28px;
+            display: block;
+        }
+
+        .date-copy .label {
+            font-size: 0.62rem;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        .date-copy .value {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-top: 1px;
+        }
+
+        .dates-divider {
+            width: 1.5px;
+            height: 36px;
+            background: var(--gold);
+        }
+
+        .ack {
+            text-align: center;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.7rem;
+            color: var(--muted);
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.45;
+        }
+
+        /* ---- FOOTER ROW ---- */
+        .footer-row {
+            margin-top: 0;
+            display: grid;
+            grid-template-columns: 1.15fr 0.9fr 1.15fr;
+            align-items: end;
+            gap: 12px;
+            padding: 0 8px;
+        }
+
+        .verify-col {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        #qrcode {
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+            background: #fff;
+            padding: 2px;
+            border: 1px solid #e2e6ee;
+        }
+
+        #qrcode img,
+        #qrcode canvas {
+            width: 66px !important;
+            height: 66px !important;
+            display: block;
+        }
+
+        .verify-meta {
+            font-size: 0.68rem;
+            color: var(--navy);
+            line-height: 1.45;
+        }
+
+        .verify-meta strong {
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+
+        .verify-meta .id {
+            font-family: ui-monospace, Consolas, monospace;
+            font-weight: 700;
+        }
+
+        .seal-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .seal-col::before,
+        .seal-col::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 42px;
+            height: 1.5px;
+            background: var(--gold);
+        }
+
+        .seal-col::before { left: -8px; transform: translateY(-50%); }
+        .seal-col::after { right: -8px; transform: translateY(-50%); }
+
+        .gold-seal {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 32% 28%, #f6e7a8, var(--gold) 50%, #8f7410 100%);
+            border: 3px solid #efdea0;
+            box-shadow:
+                0 3px 10px rgba(0, 0, 0, 0.18),
+                inset 0 0 0 3px rgba(11, 42, 91, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .gold-seal .laurel {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .gold-seal img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            object-position: center 14%;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+        }
+
+        .sig-col {
+            text-align: center;
+            padding-bottom: 2px;
+        }
+
+        .sig-col .sign {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.85rem;
+            color: var(--navy);
+            min-height: 40px;
+            line-height: 1;
+        }
+
+        .sig-col .line {
+            width: 168px;
+            margin: 2px auto 6px;
+            border-top: 1.2px solid #8a93a5;
+        }
+
+        .sig-col .who {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .sig-col .role {
+            font-size: 0.58rem;
+            color: var(--muted);
+            margin-top: 2px;
+            letter-spacing: 0.02em;
+        }
+
+        .iso-footer {
+            text-align: center;
+            font-size: 0.5rem;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+            margin-top: 8px;
+            padding-bottom: 0;
+        }
 
         .loading, .error {
             color: #fff;
@@ -588,7 +690,7 @@
 <body>
     <div class="toolbar" id="toolbar">
         <button class="secondary" onclick="window.close()">Close</button>
-        <button onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</button>
+        <button onclick="window.print()">Print / Save PDF</button>
     </div>
     <div id="root" class="loading">Loading certificate…</div>
 
@@ -603,33 +705,24 @@
         const certNo = params.get('cert') || hashParams.get('cert');
         if (id) sessionStorage.removeItem('viewCertId');
 
-        const skillIcons = {
-            python: 'fa-brands fa-python',
-            excel: 'fa-solid fa-file-excel',
-            sql: 'fa-solid fa-database',
-            'power bi': 'fa-solid fa-chart-column',
-            'data visualization': 'fa-solid fa-chart-line',
-            'data analysis': 'fa-solid fa-magnifying-glass-chart'
-        };
-
-        const brandIconSvg = `
-            <svg class="brand-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="6" y="38" width="8" height="16" rx="1.5" fill="#0a1f4d"/>
-                <rect x="18" y="30" width="8" height="24" rx="1.5" fill="#0a1f4d"/>
-                <rect x="30" y="22" width="8" height="32" rx="1.5" fill="#0a1f4d"/>
-                <rect x="42" y="14" width="8" height="40" rx="1.5" fill="#c5a017"/>
-                <path d="M8 28c8-10 16-14 26-12 6 1 12 5 18 12" fill="none" stroke="#c5a017" stroke-width="3" stroke-linecap="round"/>
-                <path d="M46 16l10 2-2 10" fill="none" stroke="#c5a017" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10 52h44" stroke="#0a1f4d" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>`;
-
         function fmt(d) {
             if (!d) return '—';
-            return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+            return new Date(d).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
         }
 
         function esc(s) {
-            return String(s || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+            return String(s || '').replace(/[&<>"']/g, m =>
+                ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])
+            );
+        }
+
+        function courseDisplayName(title) {
+            const t = String(title || '').trim();
+            return t.replace(/\s+course$/i, '').trim() || t;
         }
 
         async function load() {
@@ -655,132 +748,151 @@
 
         function render(c) {
             const verifyUrl = `${location.origin}/pages/verify.html?id=${encodeURIComponent(c.certificateId)}`;
-            const skills = (c.skills && c.skills.length)
-                ? c.skills.slice(0, 6)
-                : ['Python', 'Excel', 'SQL', 'Power BI', 'Data Visualization', 'Data Analysis'];
+            const courseName = courseDisplayName(c.courseTitle);
+            const ack = c.description && !/in-depth knowledge and hands-on experience/i.test(c.description)
+                ? c.description
+                : `This certificate acknowledges your dedication, hard work and successful completion of the ${courseName} course at Edunex Academy.`;
 
             document.title = `${c.certificateId} | Edunex Certificate`;
             document.getElementById('root').outerHTML = `
             <div class="sheet" id="root">
-                <div class="gold-frame"></div>
-                <div class="deco-tl"></div>
+                <div class="corner-tl"></div>
+                <div class="corner-tl-gold"></div>
+                <div class="corner-tl-inner"></div>
+                <div class="corner-br"></div>
+                <div class="corner-br-gold"></div>
+                <div class="corner-br-inner"></div>
+                <div class="watermark"></div>
                 <div class="content">
                     <div class="header">
-                        <div class="seal">
-                            <div class="seal-top">EDUNEX<br>ACADEMY</div>
-                            <div class="seal-sub">EMPOWERING MINDS BUILDING FUTURES</div>
-                            <div class="ribbon"></div>
-                        </div>
                         <div class="brand">
-                            <div class="brand-mark">
-                                ${brandIconSvg}
-                                <div>
-                                    <h1>EDUNEX ACADEMY</h1>
-                                    <div class="tag">Learn Today, Lead Tomorrow</div>
+                            <img src="../assets/images/logo.jpeg" alt="Edunex Academy">
+                            <div class="brand-text">
+                                <h1>EDUNEX ACADEMY</h1>
+                                <div class="tag">Learn Today. Lead Tomorrow.</div>
+                            </div>
+                        </div>
+                        <div class="iaf">
+                            <div class="iaf-badge" aria-hidden="true">
+                                <div class="iaf-top">INTERNATIONAL</div>
+                                <div class="iaf-mid">IAF</div>
+                                <div class="iaf-bot">Accreditation Forum</div>
+                            </div>
+                            <div class="iaf-copy">IAF Member<br>Global Recognition<br>for Quality</div>
+                        </div>
+                    </div>
+
+                    <div class="body-block">
+                    <div class="title-block">
+                        <div class="of">CERTIFICATE OF</div>
+                        <h2>COURSE COMPLETION</h2>
+                    </div>
+
+                    <div class="certify-block">
+                        <div class="intro">This is to certify that</div>
+                        <div class="student-name">${esc(c.studentName)}</div>
+                        <div class="name-rule"></div>
+                        <div class="completed-line">has successfully completed the</div>
+                    </div>
+
+                    <div class="course-block">
+                        <div class="ribbon-wrap">
+                            <div class="ribbon-outer">
+                                <div class="ribbon">
+                                    <div class="ribbon-text">${esc(courseName)}</div>
                                 </div>
                             </div>
+                            <div class="course-label">COURSE</div>
                         </div>
-                        <div class="iso">
-                            <div class="iso-label">ISO 9001:2015 CERTIFIED</div>
-                            <div class="iso-row">
-                                <div class="iso-chip">IAF<small>MLA Member</small></div>
-                                <div class="iso-chip">EGAC<small>CAB #119012</small></div>
+                        <div class="conducted">Conducted by Edunex Academy</div>
+                    </div>
+
+                    <div class="dates">
+                        <div class="date-item">
+                            <div class="cal" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <rect x="3" y="5" width="18" height="16" rx="2"/>
+                                    <path d="M3 9h18M8 3v4M16 3v4"/>
+                                    <path d="M8 13h2M12 13h2M16 13h2M8 17h2M12 17h2"/>
+                                </svg>
+                            </div>
+                            <div class="date-copy">
+                                <div class="label">Course Start Date</div>
+                                <div class="value">${fmt(c.startDate)}</div>
+                            </div>
+                        </div>
+                        <div class="dates-divider"></div>
+                        <div class="date-item">
+                            <div class="cal" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <rect x="3" y="5" width="18" height="16" rx="2"/>
+                                    <path d="M3 9h18M8 3v4M16 3v4"/>
+                                    <path d="M8 13h2M12 13h2M16 13h2M8 17h2M12 17h2"/>
+                                </svg>
+                            </div>
+                            <div class="date-copy">
+                                <div class="label">Course End Date</div>
+                                <div class="value">${fmt(c.completionDate)}</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="title-wrap">
-                        <h2>CERTIFICATE</h2>
-                        <div class="title-rule"><span>OF COMPLETION</span></div>
+                    <p class="ack">${esc(ack)}</p>
                     </div>
 
-                    <div class="intro">This is to certify that</div>
-                    <div class="student-name">${esc(c.studentName)}</div>
-                    <div class="course-line">
-                        has successfully completed the
-                        <strong>${esc(c.courseTitle)}</strong>
-                    </div>
-                    <div class="subtitle-gold">${esc(c.programSubtitle || 'TRAINING PROGRAM')}</div>
-                    <p class="desc">${esc(c.description || 'This program was designed to provide in-depth knowledge and hands-on experience.')}</p>
-
-                    <div class="skills">
-                        ${skills.map(s => {
-                const key = s.toLowerCase();
-                const icon = skillIcons[key] || 'fa-solid fa-circle-check';
-                return `<div class="skill"><div class="icon-wrap"><i class="${icon}"></i></div><span>${esc(s)}</span></div>`;
-            }).join('')}
-                    </div>
-
-                    <div class="meta">
-                        <div class="meta-item">
-                            <i class="fas fa-clock"></i>
-                            <div class="label">Course Duration</div>
-                            <div class="value">${esc(c.duration || '—')}</div>
+                    <div class="bottom-block">
+                    <div class="footer-row">
+                        <div class="verify-col">
+                            <div id="qrcode"></div>
+                            <div class="verify-meta">
+                                <div>Certificate ID: <span class="id">${esc(c.certificateId)}</span></div>
+                                <div>Verify at: <strong>www.edunexacademy.in/verify</strong></div>
+                            </div>
                         </div>
-                        <div class="meta-item">
-                            <i class="fas fa-users"></i>
-                            <div class="label">Batch</div>
-                            <div class="value">${esc(c.batch || '—')}</div>
+                        <div class="seal-col">
+                            <div class="gold-seal">
+                                <svg class="laurel" viewBox="0 0 100 100" aria-hidden="true">
+                                    <circle cx="50" cy="50" r="38" fill="none" stroke="#6e5808" stroke-width="1.2" opacity="0.45"/>
+                                    <g fill="#6e5808" opacity="0.55">
+                                        <ellipse cx="22" cy="50" rx="5" ry="9" transform="rotate(-18 22 50)"/>
+                                        <ellipse cx="25" cy="36" rx="4.5" ry="8" transform="rotate(-40 25 36)"/>
+                                        <ellipse cx="25" cy="64" rx="4.5" ry="8" transform="rotate(40 25 64)"/>
+                                        <ellipse cx="32" cy="26" rx="4" ry="7.5" transform="rotate(-62 32 26)"/>
+                                        <ellipse cx="32" cy="74" rx="4" ry="7.5" transform="rotate(62 32 74)"/>
+                                        <ellipse cx="42" cy="20" rx="3.8" ry="7" transform="rotate(-80 42 20)"/>
+                                        <ellipse cx="42" cy="80" rx="3.8" ry="7" transform="rotate(80 42 80)"/>
+                                        <ellipse cx="78" cy="50" rx="5" ry="9" transform="rotate(18 78 50)"/>
+                                        <ellipse cx="75" cy="36" rx="4.5" ry="8" transform="rotate(40 75 36)"/>
+                                        <ellipse cx="75" cy="64" rx="4.5" ry="8" transform="rotate(-40 75 64)"/>
+                                        <ellipse cx="68" cy="26" rx="4" ry="7.5" transform="rotate(62 68 26)"/>
+                                        <ellipse cx="68" cy="74" rx="4" ry="7.5" transform="rotate(-62 68 74)"/>
+                                        <ellipse cx="58" cy="20" rx="3.8" ry="7" transform="rotate(80 58 20)"/>
+                                        <ellipse cx="58" cy="80" rx="3.8" ry="7" transform="rotate(-80 58 80)"/>
+                                    </g>
+                                </svg>
+                                <img src="../assets/images/logo.jpeg" alt="">
+                            </div>
                         </div>
-                        <div class="meta-item">
-                            <i class="fas fa-laptop"></i>
-                            <div class="label">Mode</div>
-                            <div class="value">${esc(c.mode || '—')}</div>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-calendar"></i>
-                            <div class="label">Start Date</div>
-                            <div class="value">${fmt(c.startDate)}</div>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-calendar-check"></i>
-                            <div class="label">Completion Date</div>
-                            <div class="value">${fmt(c.completionDate)}</div>
-                        </div>
-                        <div class="meta-item cert-id">
-                            <i class="fas fa-certificate"></i>
-                            <div class="label">Certificate ID</div>
-                            <div class="value">${esc(c.certificateId)}</div>
-                        </div>
-                    </div>
-
-                    <div class="bottom">
-                        <div class="sig">
+                        <div class="sig-col">
                             <div class="sign">K. K. Sahani</div>
                             <div class="line"></div>
-                            <div class="who">K. K. SAHANI</div>
-                            <div class="role">FOUNDER &amp; DIRECTOR, EDUNEX ACADEMY</div>
-                        </div>
-                        <div class="center-col">
-                            <div class="wreath">YOUR JOURNEY TOWARDS DATA EXCELLENCE STARTS HERE</div>
-                            <div class="official-seal">EDUNEX<br>ACADEMY<br>OFFICIAL<br>SEAL</div>
-                        </div>
-                        <div class="sig">
-                            <div class="sign">Academic Head</div>
-                            <div class="line"></div>
-                            <div class="who">ACADEMIC HEAD</div>
-                            <div class="role">EDUNEX ACADEMY</div>
-                        </div>
-                        <div class="verify-box">
-                            <div class="v-title">VERIFY CERTIFICATE</div>
-                            <div id="qrcode"></div>
-                            <p>Scan to verify or visit<br>www.edunexacademy.com/verify</p>
+                            <div class="who">K. K. Sahani</div>
+                            <div class="role">Managing Director, Edunex Academy</div>
                         </div>
                     </div>
-                </div>
 
-                <div class="footer-bar">
-                    <span><i class="fas fa-award"></i>ISO 9001:2015 Certified Training Institute</span>
-                    <span class="center"><i class="fas fa-location-dot"></i>EDUNEX ACADEMY, SCO 123, First Floor, Sector 38-C, Chandigarh - 160014</span>
-                    <span class="right"><i class="fas fa-globe"></i>www.edunexacademy.com &nbsp;<i class="fas fa-envelope"></i>info@edunexacademy.com &nbsp;<i class="fas fa-phone"></i>+91 98765 43210</span>
+                    <div class="iso-footer">
+                        Edunex Academy operates a Quality Management System certified to ISO 9001:2015.
+                    </div>
+                    </div>
                 </div>
             </div>`;
 
             try {
                 new QRCode(document.getElementById('qrcode'), {
                     text: verifyUrl,
-                    width: 78,
-                    height: 78,
+                    width: 66,
+                    height: 66,
                     correctLevel: QRCode.CorrectLevel.M
                 });
             } catch (e) { /* qr optional */ }
